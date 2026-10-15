@@ -1,0 +1,47 @@
+name: verify
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: npm ci
+
+      # figma-to-sd + Style Dictionary + unidades, rampas y contraste.
+      - run: npm run verify
+
+      # build/ y source/*.json se versionan. Si el export de Figma se subió
+      # sin correr verify, el árbol queda distinto al que acaba de generarse.
+      - name: build/ al día con source/raw
+        run: |
+          if ! git diff --quiet -- build source; then
+            git --no-pager diff --stat -- build source
+            echo "::error::build/ o source/*.json no corresponden a source/raw. Corré npm run verify y commiteá."
+            exit 1
+          fi
+
+      - name: Tag igual a la versión
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          want="v$(node -p "require('./package.json').version")"
+          test "$GITHUB_REF_NAME" = "$want" || { echo "::error::El tag $GITHUB_REF_NAME no coincide con package.json ($want)"; exit 1; }

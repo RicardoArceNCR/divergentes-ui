@@ -1,0 +1,345 @@
+<title>Sistema Divergentes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Red+Hat+Display:wght@400;500;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+/* Layout: columna editorial alineada a la izquierda.
+   Todos los colores salen de build/tokens.css y tokens-dark.css (incrustados abajo).
+   En el sitio el modo oscuro es la clase .dark; acá se replica con data-theme. */
+:root {
+/*TOKENS_LIGHT*/
+  --f-display: var(--brand-font-display), "Anton", Impact, sans-serif;
+  --f-body: var(--brand-font-body), "Red Hat Display", system-ui, sans-serif;
+  --f-editorial: var(--brand-font-editorial), "Newsreader", Georgia, serif;
+  --f-mono: var(--brand-font-mono), "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --measure: 42rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+/*TOKENS_DARK*/
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+/*TOKENS_DARK*/
+  color-scheme: dark;
+}
+:root[data-theme="light"] { color-scheme: light; }
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--background-page);
+  color: var(--text-primary);
+  font-family: var(--f-body);
+  font-size: var(--typography-styles-body-md-size);
+  line-height: var(--typography-styles-body-md-line-height);
+  padding-inline: clamp(16px, 5vw, 64px);
+  padding-block: 0 var(--spacing-24);
+  -webkit-font-smoothing: antialiased;
+}
+code { font-family: var(--f-mono); font-size: 0.8125rem; color: var(--text-secondary); }
+a { color: var(--interaction-link-visited); text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+:focus-visible { outline: 2px solid var(--focus-ring-color); outline-offset: 2px; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+p { margin: 0; }
+
+/* ── barra ── */
+.bar-top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--spacing-3) var(--spacing-6);
+  margin-inline: calc(-1 * clamp(16px, 5vw, 64px));
+  padding: var(--spacing-3) clamp(16px, 5vw, 64px);
+  background: var(--background-page);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.bar-top .name { font-family: var(--f-display); font-size: 1.375rem; letter-spacing: 0.01em; text-transform: uppercase; margin-right: auto; }
+.bar-top .name i { font-style: normal; color: var(--text-brand); }
+.bar-top nav { display: flex; flex-wrap: wrap; gap: var(--spacing-2) var(--spacing-4); font-size: var(--typography-styles-body-sm-size); }
+.bar-top nav a { color: var(--text-secondary); text-decoration: none; }
+.bar-top nav a:hover { color: var(--text-primary); text-decoration: underline; }
+.theme {
+  font: 500 var(--typography-styles-label-md-size)/1 var(--f-body);
+  background: var(--surface-base); color: var(--text-primary);
+  border: 1px solid var(--border-default); border-radius: var(--radius-full);
+  padding: var(--spacing-2) var(--spacing-4); cursor: pointer;
+}
+
+/* ── apertura ── */
+.open { padding-block: var(--spacing-16) var(--spacing-12); display: grid; gap: var(--spacing-6); max-width: 60rem; }
+.over { font: 700 var(--typography-styles-overline-lg-size)/var(--typography-styles-overline-lg-line-height) var(--f-body);
+  letter-spacing: var(--typography-styles-overline-lg-letter-spacing); text-transform: uppercase; color: var(--text-secondary); }
+.open h1 {
+  font-family: var(--f-display); font-weight: 400; text-transform: uppercase;
+  font-size: clamp(3rem, 12vw, var(--typography-styles-display-hero-size));
+  line-height: 1.02; letter-spacing: -0.01em;
+}
+.open h1 .dot { color: var(--text-brand); }
+.lede { max-width: var(--measure); font-family: var(--f-editorial); font-size: var(--typography-styles-body-lg-size); line-height: var(--typography-styles-body-lg-line-height); color: var(--text-secondary); }
+.facts { display: flex; flex-wrap: wrap; gap: var(--spacing-2) var(--spacing-6); font-size: var(--typography-styles-body-sm-size); color: var(--text-secondary); }
+.facts b { color: var(--text-primary); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* ── secciones ── */
+section > *, .open > * { min-width: 0; }
+section { padding-block: var(--spacing-12); border-top: 1px solid var(--divider-default); display: grid; gap: var(--spacing-8); scroll-margin-top: 4.5rem; }
+.sh { display: grid; gap: var(--spacing-3); max-width: var(--measure); }
+.sh h2 { font-family: var(--f-display); font-weight: 400; text-transform: uppercase; font-size: var(--typography-styles-display-sm-size); line-height: var(--typography-styles-display-sm-line-height); }
+.sh p { color: var(--text-secondary); }
+h3 { font: 700 var(--typography-styles-label-md-size)/1.3 var(--f-body); color: var(--text-secondary); }
+
+/* marca */
+.brand-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr)); gap: var(--spacing-3); }
+.brand { background: var(--bg); color: var(--fg); padding: var(--spacing-5); display: grid; gap: var(--spacing-2); align-content: space-between; min-height: 13rem; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); }
+.brand h3 { color: inherit; font: 400 1.5rem/1 var(--f-display); text-transform: uppercase; }
+.brand p { font-size: var(--typography-styles-body-sm-size); line-height: 1.4; }
+.brand dl { display: grid; grid-template-columns: auto 1fr; gap: 2px var(--spacing-3); margin: 0; font: 400 0.75rem/1.4 var(--f-mono); }
+.brand dt { opacity: 0.8; } .brand dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+.pair { flex: none; display: inline-grid; place-items: center; width: 3rem; height: 3rem; background: var(--bg); color: var(--fg); font: 400 1.25rem/1 var(--f-display); border: 1px solid var(--border-subtle); }
+.pair.sm { width: 2rem; height: 2rem; font-size: 0.9rem; }
+
+/* rampas */
+.ramps { display: grid; gap: var(--spacing-6); }
+.ramp { display: grid; gap: var(--spacing-2); min-width: 0; }
+.ramp ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); gap: 3px; }
+.chip { display: grid; gap: 2px; min-width: 0; }
+.chip .sw { display: block; aspect-ratio: 1 / 1.1; max-width: 100%; background: var(--c); border: 1px solid var(--border-subtle); }
+.chip.anchor .sw { outline: 2px solid var(--text-primary); outline-offset: 2px; }
+.chip .stop { font: 700 0.75rem/1.2 var(--f-body); font-variant-numeric: tabular-nums; }
+.chip .hex { font: 400 0.6875rem/1.2 var(--f-mono); color: var(--text-secondary); overflow-wrap: anywhere; }
+@media (max-width: 640px) {
+  .ramp ol { grid-template-columns: repeat(6, minmax(0, 1fr)); row-gap: var(--spacing-3); }
+}
+
+/* roles */
+.roles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); gap: var(--spacing-8) var(--spacing-6); }
+.roles ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--spacing-2); }
+.roles li { display: flex; align-items: center; gap: var(--spacing-3); min-width: 0; }
+.roles .s { flex: none; width: 2.25rem; height: 2.25rem; background: var(--c); border: 1px solid var(--border-subtle); }
+.roles .t { flex: none; width: 2.25rem; font: 400 1.25rem/1 var(--f-display); color: var(--c); text-align: center; }
+.roles .b { flex: none; width: 2.25rem; height: 2.25rem; border: 2px solid var(--c); background: var(--surface-base); }
+.fb { display: grid; gap: var(--spacing-2); }
+.fb div { padding: var(--spacing-3) var(--spacing-4); border: 1px solid; border-radius: var(--radius-md); font-size: var(--typography-styles-body-sm-size); }
+
+/* tipografía */
+.types { list-style: none; margin: 0; padding: 0; }
+.trow { display: grid; grid-template-columns: minmax(10rem, 13rem) minmax(0, 1fr); gap: var(--spacing-2) var(--spacing-6); padding-block: var(--spacing-4); border-bottom: 1px solid var(--border-subtle); align-items: baseline; }
+.tmeta { display: grid; gap: 2px; font-size: 0.75rem; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+.trow p { min-width: 0; overflow-wrap: break-word; max-width: 52rem; }
+.t-display { font-family: var(--f-display); font-weight: 400; text-transform: uppercase; }
+.t-editorial { font-family: var(--f-editorial); }
+.t-mono { font-family: var(--f-mono); }
+.t-heading.t-body { font-weight: 700; }
+.t-label { font-weight: 700; }
+.t-overline { font-weight: 700; text-transform: uppercase; color: var(--text-secondary); }
+@media (max-width: 640px) { .trow { grid-template-columns: minmax(0, 1fr); } .t-display { font-size: min(var(--typography-styles-display-lg-size), 14vw) !important; line-height: 1.08 !important; } }
+
+/* componentes */
+.row { display: flex; flex-wrap: wrap; gap: var(--spacing-3); align-items: center; }
+.btn { font: var(--typography-weight-bold) var(--typography-styles-label-md-size)/1 var(--f-body); letter-spacing: var(--button-letter-spacing, 0.04em); height: var(--button-size-md-height); padding-inline: var(--button-size-md-padding-x); border-radius: var(--button-radius); border: 1.5px solid transparent; cursor: pointer; }
+.btn.primary { background: var(--button-primary-bg); color: var(--button-primary-text); border-color: var(--button-primary-border); }
+.btn.primary:hover { background: var(--button-primary-bg-hover); }
+.btn.primary:active { background: var(--button-primary-bg-press); }
+.btn.secondary { background: var(--button-secondary-bg); color: var(--button-secondary-text); border-color: var(--button-secondary-border); }
+.btn.secondary:hover { background: var(--button-secondary-bg-hover); }
+.btn.ghost { background: var(--button-ghost-bg); color: var(--button-ghost-text); border-color: var(--button-ghost-border); }
+.btn.ghost:hover { background: var(--button-ghost-bg-hover); }
+.btn.danger { background: var(--button-danger-bg); color: var(--button-danger-text); border-color: var(--button-danger-border); }
+.btn:disabled { background: var(--button-disabled-bg); color: var(--button-disabled-text); border-color: var(--button-disabled-border); cursor: not-allowed; }
+.btn.focus { outline: 2px solid var(--focus-ring-color); outline-offset: 2px; }
+.btn.sm { height: var(--button-size-sm-height); padding-inline: var(--button-size-sm-padding-x); }
+.btn.lg { height: var(--button-size-lg-height); padding-inline: var(--button-size-lg-padding-x); }
+.fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: var(--spacing-4); max-width: 52rem; }
+.field { display: grid; gap: var(--spacing-1); }
+.field label { font-size: var(--typography-styles-body-sm-size); color: var(--input-label); font-weight: 500; }
+.field input { font: inherit; background: var(--input-bg); color: var(--input-text); border: 1.5px solid var(--input-border); border-radius: var(--input-radius); padding: var(--input-padding-y) var(--input-padding-x); }
+.field input::placeholder { color: var(--input-placeholder); }
+.field input:hover { border-color: var(--input-border-hover); }
+.field input:focus { outline: none; border-color: var(--input-border-focus); box-shadow: 0 0 0 2px var(--focus-ring-color); }
+.field.err input { border-color: var(--input-border-error); }
+.field.err small { color: var(--feedback-error-text); }
+.field input:disabled { background: var(--input-bg-disabled); color: var(--input-text-disabled); border-color: var(--input-border-disabled); }
+.pills { display: flex; flex-wrap: wrap; gap: var(--spacing-2); }
+.pill { font: 700 var(--typography-styles-label-sm-size)/1 var(--f-body); padding: 0.45rem var(--pill-md-padding-x); border-radius: var(--pill-radius); }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: var(--spacing-4); max-width: 60rem; }
+.card { background: var(--card-bg); color: var(--card-text); border: 1px solid var(--card-border); border-radius: var(--card-radius); padding: var(--card-padding); box-shadow: var(--card-shadow); display: grid; gap: var(--spacing-3); }
+.card.int:hover { background: var(--card-bg-hover); border-color: var(--card-border-hover); }
+.card .kick { font: 700 var(--typography-styles-overline-sm-size)/1.3 var(--f-body); letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-brand-accent); }
+.card h4 { margin: 0; font: 400 1.5rem/1.1 var(--f-display); text-transform: uppercase; text-wrap: balance; }
+.card p { color: var(--text-secondary); font-size: var(--typography-styles-body-sm-size); }
+.ink-band { background: var(--surface-ink); color: var(--text-on-ink); padding: var(--spacing-6); border-radius: var(--radius-lg); display: grid; gap: var(--spacing-2); max-width: 60rem; }
+.ink-band b { font: 400 1.75rem/1.1 var(--f-display); text-transform: uppercase; }
+.highlight { background: var(--surface-highlight-bg); color: var(--surface-highlight-text); padding-inline: 0.2em; }
+
+/* contraste y escalas */
+.tablewrap { overflow-x: auto; border: 1px solid var(--border-subtle); }
+table { border-collapse: collapse; width: 100%; min-width: 46rem; font-size: 0.8125rem; }
+th, td { text-align: left; padding: var(--spacing-2) var(--spacing-3); border-bottom: 1px solid var(--border-subtle); vertical-align: middle; }
+th { font-weight: 700; color: var(--text-secondary); background: var(--background-subtle); position: sticky; top: 0; }
+td.num { font-variant-numeric: tabular-nums; text-align: right; }
+.state { font-weight: 700; font-size: 0.75rem; padding: 0.2rem 0.55rem; border-radius: var(--radius-full); white-space: nowrap; }
+.state.ok { background: var(--feedback-success-bg); color: var(--feedback-success-text); }
+.state.warn { background: var(--feedback-warning-bg); color: var(--feedback-warning-text); }
+.state.bad { background: var(--feedback-error-bg); color: var(--feedback-error-text); }
+.scale { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--spacing-2); }
+.scale li { display: grid; grid-template-columns: 2.5rem 1fr; align-items: center; gap: var(--spacing-3); }
+.scale .bar { display: block; height: 0.75rem; background: var(--brand-action); }
+.radii { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--spacing-5); }
+.radii li { display: grid; gap: var(--spacing-1); justify-items: center; }
+.rbox { width: 4rem; height: 4rem; background: var(--brand-subtle); border: 2px solid var(--brand-strong); display: block; }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: var(--spacing-10); }
+.shadows { display: flex; flex-wrap: wrap; gap: var(--spacing-6); }
+.shadows div { width: 7rem; height: 5rem; background: var(--surface-raised); border-radius: var(--radius-lg); display: grid; place-items: center; font: 400 0.75rem var(--f-mono); color: var(--text-secondary); }
+.note { font-size: var(--typography-styles-body-sm-size); color: var(--text-secondary); max-width: var(--measure); }
+footer.end { padding-top: var(--spacing-10); border-top: 1px solid var(--divider-default); color: var(--text-secondary); font-size: var(--typography-styles-body-sm-size); display: grid; gap: var(--spacing-2); max-width: var(--measure); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<header class="bar-top">
+  <span class="name">Divergentes<i>.</i></span>
+  <nav aria-label="Secciones">
+    <a href="#marca">Marca</a><a href="#escalas">Escalas</a><a href="#roles">Roles</a><a href="#tipo">Tipografía</a>
+    <a href="#componentes">Componentes</a><a href="#fundamentos">Fundamentos</a><a href="#contraste">Contraste</a>
+  </nav>
+  <button class="theme" id="theme" type="button" aria-label="Cambiar tema">Tema: sistema</button>
+</header>
+
+<main>
+<div class="open">
+  <p class="over">Sistema · @divergentes/ui v<!--VERSION--></p>
+  <h1>Divergentes<span class="dot">.</span></h1>
+  <p class="lede">Los tokens del sitio de Divergentes, tal como los publica el paquete. Todo lo que ves en esta página sale de las variables del Figma maestro, compiladas a <code>tokens.css</code>. Si algo se ve mal acá, se arregla en Figma, no en el sitio.</p>
+  <div class="facts"><span><b><!--N_FAMILIES--></b> rampas de color</span><span><b><!--N_TOKENS--></b> tokens en :root</span><span><b>2</b> temas</span><span>Fuente: <code>@divergentes/ui</code></span></div>
+</div>
+
+<section id="marca">
+  <div class="sh"><h2>Marca</h2><p>Los colores que identifican a Divergentes, con el stop que los publica y el rol que cumplen en los semánticos. El texto de cada tarjeta es el que más contraste da; los dos ratios están medidos.</p></div>
+  <div class="brand-grid"><!--BRAND--></div>
+</section>
+
+<section id="escalas">
+  <div class="sh"><h2>Escalas</h2><p>Las rampas tal como salen de Figma. El stop con aro es el que usa la marca. <code>red</code> repite los hex de <code>accent</code> y <code>amarillo</code> es un empalme de <code>leaf</code> con <code>gold</code>: se publican igual para no cambiar nada respecto de misitio-ui v0.1.6 y se revisan en Figma.</p></div>
+  <div class="ramps"><!--RAMPS--></div>
+</section>
+
+<section id="roles">
+  <div class="sh"><h2>Roles</h2><p>Lo que usa la interfaz. Cambiá el tema arriba: los nombres no cambian, el valor sí.</p></div>
+  <div class="roles">
+    <div><h3>Texto</h3><ul>
+      <li><span class="t" style="--c:var(--text-primary)">Aa</span><code>text/primary</code></li>
+      <li><span class="t" style="--c:var(--text-secondary)">Aa</span><code>text/secondary</code></li>
+      <li><span class="t" style="--c:var(--text-tertiary)">Aa</span><code>text/tertiary</code></li>
+      <li><span class="t" style="--c:var(--text-brand)">Aa</span><code>text/brand</code></li>
+      <li><span class="t" style="--c:var(--text-brand-accent)">Aa</span><code>text/brand-accent</code></li>
+      <li><span class="t" style="--c:var(--text-disabled)">Aa</span><code>text/disabled</code></li>
+    </ul></div>
+    <div><h3>Fondos y superficies</h3><ul>
+      <li><span class="s" style="--c:var(--background-page)"></span><code>background/page</code></li>
+      <li><span class="s" style="--c:var(--background-subtle)"></span><code>background/subtle</code></li>
+      <li><span class="s" style="--c:var(--surface-base)"></span><code>surface/base</code></li>
+      <li><span class="s" style="--c:var(--surface-raised)"></span><code>surface/raised</code></li>
+      <li><span class="s" style="--c:var(--surface-inverse)"></span><code>surface/inverse</code></li>
+      <li><span class="s" style="--c:var(--surface-ink)"></span><code>surface/ink</code></li>
+    </ul></div>
+    <div><h3>Marca y bordes</h3><ul>
+      <li><span class="s" style="--c:var(--brand-action)"></span><code>brand/action</code></li>
+      <li><span class="s" style="--c:var(--brand-subtle)"></span><code>brand/subtle</code></li>
+      <li><span class="s" style="--c:var(--brand-gold)"></span><code>brand/gold</code></li>
+      <li><span class="b" style="--c:var(--border-default)"></span><code>border/default</code></li>
+      <li><span class="b" style="--c:var(--border-strong)"></span><code>border/strong</code></li>
+      <li><span class="b" style="--c:var(--focus-ring-color)"></span><code>focus/ring-color</code></li>
+    </ul></div>
+    <div><h3>Estados</h3><div class="fb">
+      <div style="background:var(--feedback-success-bg);color:var(--feedback-success-text);border-color:var(--feedback-success-border)">Éxito · leaf</div>
+      <div style="background:var(--feedback-warning-bg);color:var(--feedback-warning-text);border-color:var(--feedback-warning-border)">Aviso · main</div>
+      <div style="background:var(--feedback-error-bg);color:var(--feedback-error-text);border-color:var(--feedback-error-border)">Error · accent</div>
+      <div style="background:var(--feedback-info-bg);color:var(--feedback-info-text);border-color:var(--feedback-info-border)">Info · info</div>
+    </div></div>
+  </div>
+</section>
+
+<section id="tipo">
+  <div class="sh"><h2>Tipografía</h2><p>Display en Anton, texto en Red Hat Display, editorial en Newsreader y código en IBM Plex Mono (<code>brand/font-*</code>). Tamaño, interlineado y tracking salen de <code>typography/styles/*</code>; la última columna dice qué familia se usa en esta muestra.</p></div>
+  <ol class="types"><!--TYPE--></ol>
+</section>
+
+<section id="componentes">
+  <div class="sh"><h2>Componentes</h2><p>Cada propiedad es un token de la colección componentes.</p></div>
+  <h3>Botón</h3>
+  <div class="row">
+    <button class="btn primary" type="button">Leer la investigación</button>
+    <button class="btn secondary" type="button">Compartir</button>
+    <button class="btn ghost" type="button">Guardar</button>
+    <button class="btn danger" type="button">Eliminar</button>
+    <button class="btn primary" type="button" disabled>No disponible</button>
+    <button class="btn primary focus" type="button">Con foco</button>
+  </div>
+  <div class="row">
+    <button class="btn primary sm" type="button">Chico</button>
+    <button class="btn primary" type="button">Medio</button>
+    <button class="btn primary lg" type="button">Grande</button>
+  </div>
+  <h3>Campo</h3>
+  <div class="fields">
+    <div class="field"><label for="f-mail">Correo</label><input id="f-mail" type="email" placeholder="nombre@correo.com"></div>
+    <div class="field err"><label for="f-err">Correo</label><input id="f-err" type="email" value="nombre@"><small>Falta el dominio después de la @.</small></div>
+    <div class="field"><label for="f-off">País</label><input id="f-off" type="text" value="Nicaragua" disabled></div>
+  </div>
+  <h3>Etiqueta</h3>
+  <div class="pills">
+    <span class="pill" style="background:var(--pill-base-bg);color:var(--pill-base-text);border:1px solid var(--pill-base-border)">Análisis</span>
+    <span class="pill" style="background:var(--pill-brand-bg);color:var(--pill-brand-text)">Divergentes</span>
+    <span class="pill" style="background:var(--pill-success-bg);color:var(--pill-success-text)">Verificado</span>
+    <span class="pill" style="background:var(--pill-warning-bg);color:var(--pill-warning-text)">En revisión</span>
+    <span class="pill" style="background:var(--pill-error-bg);color:var(--pill-error-text)">Desmentido</span>
+  </div>
+  <h3>Tarjeta</h3>
+  <div class="cards">
+    <article class="card"><p class="kick">Investigación</p><h4>Título de una nota de muestra</h4><p>Quieta. Sombra, radio y padding salen del token.</p></article>
+    <article class="card int"><p class="kick">Especial</p><h4>Otra nota, <span class="highlight">con resaltado</span></h4><p>Interactiva. El hover cambia fondo y borde. El resaltado es <code>surface/highlight</code>.</p></article>
+  </div>
+  <h3>Banda tinta</h3>
+  <div class="ink-band"><b>surface/ink</b><span>Texto en <code style="color:inherit">text/on-ink</code> sobre el azul tinta.</span></div>
+</section>
+
+<section id="fundamentos">
+  <div class="sh"><h2>Espacio, radios y sombras</h2><p>Escala de la colección spacing; el ancho de la barra es el token.</p></div>
+  <div class="two">
+    <ul class="scale"><!--SPACE--></ul>
+    <div style="display:grid;gap:var(--spacing-8)"><ul class="radii"><!--RADII--></ul>
+      <div class="shadows"><div style="box-shadow:var(--shadow-sm)">shadow/sm</div><div style="box-shadow:var(--shadow-md)">shadow/md</div><div style="box-shadow:var(--shadow-lg)">shadow/lg</div></div></div>
+  </div>
+</section>
+
+<section id="contraste">
+  <div class="sh"><h2>Contraste</h2><p>Los pares de <code>scripts/contrast-pairs.json</code>, medidos en los dos temas con WCAG 2; APCA Lc va como referencia. <!--CONTRAST_SUMMARY--> Los que están en ALLOW no se corrigieron en v0.1.0 a propósito: esa versión replica la salida de misitio-ui sin cambios.</p></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Tema</th><th>Muestra</th><th>Primer plano</th><th>Fondo</th><th>WCAG</th><th>Lc</th><th>Uso</th><th>Estado</th></tr></thead>
+    <tbody><!--CONTRAST--></tbody>
+  </table></div>
+</section>
+</main>
+
+<footer class="end">
+  <p>Generado por <code>herramientas/sistema.py</code> desde <code>build/</code>. Para actualizarla: exportar desde Figma, <code>npm run verify</code> y <code>npm run sistema</code>.</p>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme');
+  var order = ['sistema', 'claro', 'oscuro'];
+  var map = { sistema: null, claro: 'light', oscuro: 'dark' };
+  var state = 'sistema';
+  try { state = localStorage.getItem('div-tema') || 'sistema'; } catch (e) {}
+  function apply() {
+    if (map[state]) root.setAttribute('data-theme', map[state]); else root.removeAttribute('data-theme');
+    btn.textContent = 'Tema: ' + state;
+  }
+  btn.addEventListener('click', function () {
+    state = order[(order.indexOf(state) + 1) % order.length];
+    try { localStorage.setItem('div-tema', state); } catch (e) {}
+    apply();
+  });
+  apply();
+})();
+</script>

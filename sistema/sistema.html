@@ -1,0 +1,1275 @@
+<title>Sistema Divergentes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Red+Hat+Display:wght@400;500;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+/* Layout: columna editorial alineada a la izquierda.
+   Todos los colores salen de build/tokens.css y tokens-dark.css (incrustados abajo).
+   En el sitio el modo oscuro es la clase .dark; acá se replica con data-theme. */
+:root {
+--color-neutral-50: #fafaf9;
+  --color-neutral-100: #f0efee;
+  --color-neutral-200: #dedddb;
+  --color-neutral-300: #c2c0bd;
+  --color-neutral-400: #9e9c98;
+  --color-neutral-500: #797673;
+  --color-neutral-600: #595856;
+  --color-neutral-700: #3e3d3b;
+  --color-neutral-800: #262524;
+  --color-neutral-900: #161615;
+  --color-neutral-950: #0a0a09;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-accent-50: #fcf3f5;
+  --color-accent-100: #f6e1e7;
+  --color-accent-200: #f5bac8;
+  --color-accent-300: #ff7d9d;
+  --color-accent-400: #ff4573;
+  --color-accent-500: #ff003f;
+  --color-accent-600: #d10034;
+  --color-accent-700: #a8002a;
+  --color-accent-800: #80001f;
+  --color-accent-900: #5e0017;
+  --color-accent-950: #450011;
+  --color-main-50: #f4fbfa;
+  --color-main-100: #e3f5f3;
+  --color-main-200: #bef1ed;
+  --color-main-300: #87f5ed;
+  --color-main-400: #53f1e5;
+  --color-main-500: #0fbdaf;
+  --color-main-600: #0c9b8f;
+  --color-main-700: #0a7d73;
+  --color-main-800: #085e57;
+  --color-main-900: #044842;
+  --color-main-950: #033430;
+  --color-info-50: #f7fbfe;
+  --color-info-100: #dff0f9;
+  --color-info-200: #c2e2f4;
+  --color-info-300: #a5d4ef;
+  --color-info-400: #81c3e9;
+  --color-info-500: #5eb2e3;
+  --color-info-600: #4f94bc;
+  --color-info-700: #417696;
+  --color-info-800: #32596f;
+  --color-info-900: #274251;
+  --color-info-950: #1f313c;
+  --color-leaf-50: #f1fce8;
+  --color-leaf-100: #def7c6;
+  --color-leaf-200: #b8ef87;
+  --color-leaf-300: #86e048;
+  --color-leaf-400: #5ac718;
+  --color-leaf-500: #3aaf00;
+  --color-leaf-600: #2b8600;
+  --color-leaf-700: #1e6000;
+  --color-leaf-800: #133d00;
+  --color-leaf-900: #092200;
+  --color-leaf-950: #041100;
+  --color-amarillo-50: #f1fce8;
+  --color-amarillo-100: #def7c6;
+  --color-amarillo-200: #b8ef87;
+  --color-amarillo-300: #86e048;
+  --color-amarillo-400: #ffe745;
+  --color-amarillo-500: #fedd00;
+  --color-amarillo-600: #d0b500;
+  --color-amarillo-700: #1e6000;
+  --color-amarillo-800: #133d00;
+  --color-amarillo-900: #092200;
+  --color-amarillo-950: #041100;
+  --color-gold-50: #fefcec;
+  --color-gold-100: #fef7cd;
+  --color-gold-200: #fef19a;
+  --color-gold-300: #feea67;
+  --color-gold-400: #ffe433;
+  --color-gold-500: #fedd00;
+  --color-gold-600: #d1b500;
+  --color-gold-700: #a89200;
+  --color-gold-800: #857300;
+  --color-gold-900: #615400;
+  --color-gold-950: #3d3500;
+  --color-ink-50: #e9f5fb;
+  --color-ink-100: #cbe6f6;
+  --color-ink-200: #8bcaee;
+  --color-ink-300: #30a5e8;
+  --color-ink-400: #006ead;
+  --color-ink-500: #002a42;
+  --color-ink-600: #002338;
+  --color-ink-700: #001d2e;
+  --color-ink-800: #001724;
+  --color-ink-900: #00101a;
+  --color-ink-950: #000b12;
+  --color-red-50: #fcf3f5;
+  --color-red-100: #f6e1e7;
+  --color-red-200: #f5bac8;
+  --color-red-300: #ff7d9d;
+  --color-red-400: #ff4573;
+  --color-red-500: #ff003f;
+  --color-red-600: #d10034;
+  --color-red-700: #a8002a;
+  --color-red-800: #80001f;
+  --color-red-900: #5e0017;
+  --color-red-950: #450011;
+  --typography-size-2xs: 10px;
+  --typography-size-xs: 12px;
+  --typography-size-sm: 14px;
+  --typography-size-md: 16px;
+  --typography-size-lg: 18px;
+  --typography-size-xl: 20px;
+  --typography-size-2xl: 24px;
+  --typography-size-3xl: 28px;
+  --typography-size-4xl: 32px;
+  --typography-size-5xl: 40px;
+  --typography-size-6xl: 48px;
+  --typography-size-7xl: 64px;
+  --typography-size-8xl: 104px;
+  --typography-weight-regular: 400;
+  --typography-weight-medium: 500;
+  --typography-weight-semibold: 600;
+  --typography-weight-bold: 700;
+  --typography-weight-extrabold: 800;
+  --typography-leading-tight: 1.05;
+  --typography-leading-snug: 1.25;
+  --typography-leading-normal: 1.5;
+  --typography-leading-relaxed: 1.7;
+  --typography-leading-loose: 1.8;
+  --typography-tracking-tight: -0.03em;
+  --typography-tracking-normal: 0em;
+  --typography-tracking-wide: 0.06em;
+  --typography-tracking-wider: 0.1em;
+  --typography-tracking-caps: 0.12em;
+  --typography-heading-size: 32;
+  --typography-heading-family: Hanley Pro Block;
+  --typography-subheading-size: 28;
+  --typography-body-size: 16;
+  --typography-body-family: Montserrat;
+  --typography-label-size: 14;
+  --typography-caption-size: 12;
+  --typography-hero-size: 104;
+  --typography-styles-display-hero-size: 104px;
+  --typography-styles-display-hero-line-height: 109.2px;
+  --typography-styles-display-hero-letter-spacing: -3.12px;
+  --typography-styles-display-xl-size: 64px;
+  --typography-styles-display-xl-line-height: 67.2px;
+  --typography-styles-display-xl-letter-spacing: -1.92px;
+  --typography-styles-display-lg-size: 48px;
+  --typography-styles-display-lg-line-height: 50.4px;
+  --typography-styles-display-lg-letter-spacing: -0.96px;
+  --typography-styles-display-md-size: 40px;
+  --typography-styles-display-md-line-height: 50px;
+  --typography-styles-display-md-letter-spacing: -0.8px;
+  --typography-styles-display-sm-size: 32px;
+  --typography-styles-display-sm-line-height: 40px;
+  --typography-styles-display-sm-letter-spacing: -0.32px;
+  --typography-styles-heading-h1-size: 28px;
+  --typography-styles-heading-h1-line-height: 35px;
+  --typography-styles-heading-h1-letter-spacing: -0.28px;
+  --typography-styles-heading-h2-size: 24px;
+  --typography-styles-heading-h2-line-height: 30px;
+  --typography-styles-heading-h3-size: 20px;
+  --typography-styles-heading-h3-line-height: 25px;
+  --typography-styles-heading-h4-size: 18px;
+  --typography-styles-heading-h4-line-height: 27px;
+  --typography-styles-heading-h5-size: 16px;
+  --typography-styles-heading-h5-line-height: 24px;
+  --typography-styles-body-lg-size: 18px;
+  --typography-styles-body-lg-line-height: 30.6px;
+  --typography-styles-body-md-size: 16px;
+  --typography-styles-body-md-line-height: 27.2px;
+  --typography-styles-body-sm-size: 14px;
+  --typography-styles-body-sm-line-height: 21px;
+  --typography-styles-body-xs-size: 12px;
+  --typography-styles-body-xs-line-height: 18px;
+  --typography-styles-body-lg-bold-size: 18px;
+  --typography-styles-body-lg-bold-line-height: 30.6px;
+  --typography-styles-body-md-bold-size: 16px;
+  --typography-styles-body-md-bold-line-height: 27.2px;
+  --typography-styles-body-sm-bold-size: 14px;
+  --typography-styles-body-sm-bold-line-height: 21px;
+  --typography-styles-label-lg-size: 16px;
+  --typography-styles-label-lg-line-height: 20px;
+  --typography-styles-label-lg-letter-spacing: 0.96px;
+  --typography-styles-label-md-size: 14px;
+  --typography-styles-label-md-line-height: 17.5px;
+  --typography-styles-label-md-letter-spacing: 0.84px;
+  --typography-styles-label-sm-size: 12px;
+  --typography-styles-label-sm-line-height: 15px;
+  --typography-styles-label-sm-letter-spacing: 0.72px;
+  --typography-styles-label-xs-size: 10px;
+  --typography-styles-label-xs-line-height: 12.5px;
+  --typography-styles-label-xs-letter-spacing: 0.8px;
+  --typography-styles-overline-lg-size: 14px;
+  --typography-styles-overline-lg-line-height: 17.5px;
+  --typography-styles-overline-lg-letter-spacing: 1.68px;
+  --typography-styles-overline-sm-size: 12px;
+  --typography-styles-overline-sm-line-height: 15px;
+  --typography-styles-overline-sm-letter-spacing: 1.44px;
+  --typography-styles-code-md-size: 14px;
+  --typography-styles-code-md-line-height: 23.8px;
+  --typography-styles-code-sm-size: 12px;
+  --typography-styles-code-sm-line-height: 18px;
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+  --border-width-none: 0px;
+  --border-width-sm: 0.5px;
+  --border-width-md: 1px;
+  --border-width-lg: 1.5px;
+  --border-width-xl: 2px;
+  --surface-inverse-subtle: rgba(255, 255, 255, 0.11);
+  --text-inverse-secondary: rgba(255, 255, 255, 0.61);
+  --border-inverse-subtle: rgba(255, 255, 255, 0.72);
+  --brand-font-display: Anton;
+  --brand-font-body: Red Hat Display;
+  --brand-font-mono: IBM Plex Mono;
+  --brand-font-editorial: Newsreader;
+  --overlay-modal: rgba(0, 0, 0, 0.7);
+  --overlay-card: rgba(0, 0, 0, 0.24);
+  --overlay-hero: rgba(0, 0, 0, 0.62);
+  --button-ghost-border: rgba(0, 0, 0, 0);
+  --modal-overlay: rgba(0, 0, 0, 0.6);
+  --spacing-0: 0px;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+  --spacing-20: 80px;
+  --spacing-24: 96px;
+  --motion-duration-instant: 50ms;
+  --motion-duration-fast: 100ms;
+  --motion-duration-normal: 150ms;
+  --motion-duration-slow: 250ms;
+  --motion-duration-slower: 400ms;
+  --motion-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-easing-enter: cubic-bezier(0, 0, 0.2, 1);
+  --motion-easing-exit: cubic-bezier(0.4, 0, 1, 1);
+  --motion-easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --opacity-ghost: 0.04;
+  --opacity-hairline: 0.08;
+  --opacity-subtle: 0.16;
+  --opacity-mid: 0.42;
+  --opacity-soft: 0.5;
+  --opacity-medium: 0.6;
+  --opacity-strong: 0.72;
+  --opacity-high: 0.8;
+  --opacity-full: 1;
+  --breakpoint-sm: 640;
+  --breakpoint-md: 768;
+  --breakpoint-lg: 1024;
+  --breakpoint-xl: 1280;
+  --breakpoint-2xl: 1536;
+  --shadow-sm: 0px 1px 2px rgba(0, 0, 0, 0.06), 0px 1px 3px rgba(0, 0, 0, 0.10);
+  --shadow-md: 0px 4px 6px -1px rgba(0, 0, 0, 0.10), 0px 2px 4px -2px rgba(0, 0, 0, 0.10);
+  --shadow-lg: 0px 10px 15px -3px rgba(0, 0, 0, 0.10), 0px 4px 6px -4px rgba(0, 0, 0, 0.10);
+  --shadow-sm-dark: 0px 1px 2px rgba(0, 0, 0, 0.30), 0px 1px 3px rgba(0, 0, 0, 0.40);
+  --shadow-md-dark: 0px 4px 6px -1px rgba(0, 0, 0, 0.40), 0px 2px 4px -2px rgba(0, 0, 0, 0.40);
+  --shadow-lg-dark: 0px 10px 15px -3px rgba(0, 0, 0, 0.45), 0px 4px 6px -4px rgba(0, 0, 0, 0.45);
+  --z-index-dropdown: 1000;
+  --z-index-sticky: 1020;
+  --z-index-overlay: 1030;
+  --z-index-modal: 1040;
+  --z-index-toast: 1050;
+  --z-index-tooltip: 1060;
+  --background-page: var(--color-neutral-50);
+  --background-base: var(--color-neutral-50);
+  --background-subtle: var(--color-neutral-100);
+  --background-strong: var(--color-neutral-200);
+  --surface-base: var(--color-white);
+  --surface-raised: var(--color-white);
+  --surface-container: var(--color-neutral-100);
+  --surface-subtle: var(--color-neutral-50);
+  --surface-inverse: var(--color-neutral-900);
+  --surface-accent-bg: var(--color-neutral-900);
+  --surface-accent-text: var(--color-neutral-50);
+  --surface-accent-border: var(--color-neutral-700);
+  --surface-ink: var(--color-ink-500);
+  --surface-highlight-bg: var(--color-red-500);
+  --surface-highlight-text: var(--color-neutral-50);
+  --text-primary: var(--color-neutral-900);
+  --text-secondary: var(--color-neutral-600);
+  --text-tertiary: var(--color-neutral-400);
+  --text-disabled: var(--color-neutral-300);
+  --text-inverse: var(--color-white);
+  --text-brand: var(--color-accent-500);
+  --text-on-brand: var(--color-white);
+  --text-brand-accent: var(--color-main-800);
+  --text-on-ink: var(--color-neutral-50);
+  --border-default: var(--color-neutral-200);
+  --border-subtle: var(--color-neutral-100);
+  --border-strong: var(--color-neutral-300);
+  --border-brand: var(--color-neutral-500);
+  --border-inverse: var(--color-neutral-900);
+  --brand-main: var(--color-main-500);
+  --brand-subtle: var(--color-main-50);
+  --brand-strong: var(--color-main-600);
+  --brand-action: var(--color-main-500);
+  --brand-action-hover: var(--color-main-600);
+  --brand-action-press: var(--color-main-700);
+  --brand-gold: var(--color-gold-500);
+  --brand-leaf: var(--color-leaf-500);
+  --brand-sky: var(--color-info-400);
+  --feedback-success-bg: var(--color-leaf-50);
+  --feedback-success-border: var(--color-leaf-300);
+  --feedback-success-text: var(--color-leaf-700);
+  --feedback-success-icon: var(--color-leaf-500);
+  --feedback-warning-bg: var(--color-main-50);
+  --feedback-warning-border: var(--color-main-300);
+  --feedback-warning-text: var(--color-main-700);
+  --feedback-warning-icon: var(--color-main-500);
+  --feedback-error-bg: var(--color-accent-50);
+  --feedback-error-border: var(--color-accent-300);
+  --feedback-error-text: var(--color-accent-700);
+  --feedback-error-icon: var(--color-accent-500);
+  --feedback-info-bg: var(--color-info-50);
+  --feedback-info-border: var(--color-info-300);
+  --feedback-info-text: var(--color-info-700);
+  --feedback-info-icon: var(--color-info-400);
+  --focus-ring-color: var(--color-info-400);
+  --focus-ring-offset: var(--color-white);
+  --interaction-hover-overlay: var(--color-black);
+  --interaction-active-overlay: var(--color-black);
+  --interaction-link-default: var(--color-info-500);
+  --interaction-link-hover: var(--color-info-600);
+  --interaction-link-visited: var(--color-info-700);
+  --divider-default: var(--color-neutral-200);
+  --divider-strong: var(--color-neutral-300);
+  --button-primary-text: var(--color-neutral-900);
+  --button-danger-bg-press: var(--color-accent-800);
+  --button-size-sm-height: var(--spacing-8);
+  --button-size-sm-padding-x: var(--spacing-3);
+  --button-size-md-height: var(--spacing-10);
+  --button-size-md-padding-x: var(--spacing-4);
+  --button-size-lg-height: var(--spacing-12);
+  --button-size-lg-padding-x: var(--spacing-6);
+  --button-font-weight: var(--typography-weight-extrabold);
+  --button-letter-spacing: var(--typography-tracking-caps);
+  --button-radius: var(--radius-full);
+  --input-radius: var(--radius-md);
+  --input-padding-x: var(--spacing-4);
+  --input-padding-y: var(--spacing-3);
+  --card-radius: var(--radius-lg);
+  --card-padding: var(--spacing-4);
+  --card-shadow: var(--shadow-sm);
+  --nav-item-default: var(--text-inverse-secondary);
+  --nav-height: var(--spacing-16);
+  --modal-radius: var(--radius-xl);
+  --modal-shadow: var(--shadow-lg);
+  --pill-radius: var(--radius-full);
+  --pill-sm-padding-x: var(--spacing-2);
+  --pill-md-padding-x: var(--spacing-3);
+  --toast-radius: var(--radius-lg);
+  --toast-shadow: var(--shadow-md);
+  --tooltip-radius: var(--radius-sm);
+  --tooltip-shadow: var(--shadow-sm);
+  --avatar-size-sm: var(--spacing-8);
+  --avatar-size-md: var(--spacing-10);
+  --avatar-size-lg: var(--spacing-12);
+  --strip-bg: var(--color-neutral-500);
+  --button-primary-bg: var(--brand-action);
+  --button-primary-bg-hover: var(--brand-action-hover);
+  --button-primary-bg-press: var(--brand-action-press);
+  --button-primary-border: var(--brand-action);
+  --button-secondary-bg: var(--surface-base);
+  --button-secondary-bg-hover: var(--background-subtle);
+  --button-secondary-text: var(--text-primary);
+  --button-secondary-border: var(--border-strong);
+  --button-secondary-bg-press: var(--background-strong);
+  --button-ghost-bg: var(--surface-base);
+  --button-ghost-bg-hover: var(--background-subtle);
+  --button-ghost-text: var(--text-primary);
+  --button-ghost-bg-press: var(--background-strong);
+  --button-danger-bg: var(--feedback-error-icon);
+  --button-danger-text: var(--text-on-brand);
+  --button-danger-border: var(--feedback-error-icon);
+  --button-disabled-bg: var(--background-strong);
+  --button-disabled-text: var(--text-disabled);
+  --button-disabled-border: var(--border-subtle);
+  --input-bg: var(--surface-base);
+  --input-bg-focus: var(--surface-base);
+  --input-bg-disabled: var(--background-subtle);
+  --input-border: var(--border-default);
+  --input-border-focus: var(--brand-action);
+  --input-border-error: var(--feedback-error-border);
+  --input-border-success: var(--feedback-success-border);
+  --input-text: var(--text-primary);
+  --input-placeholder: var(--text-tertiary);
+  --input-label: var(--text-secondary);
+  --input-border-hover: var(--border-strong);
+  --input-border-disabled: var(--border-subtle);
+  --input-text-disabled: var(--text-disabled);
+  --card-bg: var(--surface-raised);
+  --card-border: var(--border-default);
+  --card-text: var(--text-primary);
+  --card-bg-hover: var(--surface-subtle);
+  --card-border-hover: var(--border-strong);
+  --nav-bg: var(--surface-inverse);
+  --nav-border: var(--border-default);
+  --nav-item-active: var(--brand-main);
+  --nav-item-hover: var(--text-inverse);
+  --nav-logo-text: var(--text-primary);
+  --nav-logo-accent: var(--brand-main);
+  --modal-bg: var(--surface-raised);
+  --modal-border: var(--border-default);
+  --modal-text: var(--text-primary);
+  --pill-base-bg: var(--background-subtle);
+  --pill-base-text: var(--text-secondary);
+  --pill-base-border: var(--border-default);
+  --pill-brand-bg: var(--brand-subtle);
+  --pill-brand-text: var(--brand-strong);
+  --pill-success-bg: var(--feedback-success-bg);
+  --pill-success-text: var(--feedback-success-text);
+  --pill-warning-bg: var(--feedback-warning-bg);
+  --pill-warning-text: var(--feedback-warning-text);
+  --pill-error-bg: var(--feedback-error-bg);
+  --pill-error-text: var(--feedback-error-text);
+  --pill-filter-bg: var(--surface-base);
+  --pill-filter-bg-active: var(--surface-inverse);
+  --pill-filter-border: var(--border-default);
+  --pill-filter-text: var(--text-secondary);
+  --pill-filter-text-active: var(--text-inverse);
+  --toast-bg: var(--surface-raised);
+  --toast-border: var(--border-default);
+  --toast-text: var(--text-primary);
+  --tooltip-bg: var(--surface-inverse);
+  --tooltip-text: var(--text-inverse);
+  --avatar-bg: var(--brand-subtle);
+  --avatar-text: var(--brand-strong);
+  --avatar-border: var(--border-default);
+  --hero-text: var(--text-primary);
+  --hero-bg: var(--background-base);
+  --process-circle-bg: var(--background-strong);
+  --footer-bg: var(--background-base);
+  --footer-social-icon-bg: var(--surface-inverse);
+  --footer-border: var(--border-default);
+  --footer-heading: var(--text-primary);
+  --footer-legal-text: var(--text-secondary);
+  --footer-link-hover: var(--text-primary);
+  --footer-text: var(--text-secondary);
+  --button-danger-bg-hover: var(--pill-error-text);
+  --f-display: var(--brand-font-display), "Anton", Impact, sans-serif;
+  --f-body: var(--brand-font-body), "Red Hat Display", system-ui, sans-serif;
+  --f-editorial: var(--brand-font-editorial), "Newsreader", Georgia, serif;
+  --f-mono: var(--brand-font-mono), "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --measure: 42rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+--typography-heading-size: 32;
+  --typography-heading-family: Hanley Pro Block;
+  --typography-subheading-size: 28;
+  --typography-body-size: 16;
+  --typography-body-family: Montserrat;
+  --typography-label-size: 14;
+  --typography-caption-size: 12;
+  --typography-hero-size: 104;
+  --surface-inverse-subtle: rgba(0, 0, 0, 0.11);
+  --text-inverse-secondary: rgba(22, 22, 21, 0.61);
+  --border-inverse-subtle: rgba(0, 0, 0, 0.24);
+  --overlay-modal: rgba(0, 0, 0, 0.7);
+  --overlay-card: rgba(0, 0, 0, 0.24);
+  --overlay-hero: rgba(0, 0, 0, 0.62);
+  --button-ghost-border: rgba(0, 0, 0, 0);
+  --button-size-sm-height: 32px;
+  --button-size-sm-padding-x: 12px;
+  --button-size-md-height: 40px;
+  --button-size-md-padding-x: 16px;
+  --button-size-lg-height: 48px;
+  --button-size-lg-padding-x: 24px;
+  --button-radius: 9999px;
+  --input-radius: 8px;
+  --input-padding-x: 16px;
+  --input-padding-y: 12px;
+  --card-radius: 12px;
+  --card-padding: 24px;
+  --nav-height: 64px;
+  --modal-overlay: rgba(0, 0, 0, 0.6);
+  --modal-radius: 16px;
+  --pill-radius: 9999px;
+  --pill-sm-padding-x: 8px;
+  --pill-md-padding-x: 12px;
+  --toast-radius: 12px;
+  --tooltip-radius: 4px;
+  --avatar-size-sm: 32px;
+  --avatar-size-md: 40px;
+  --avatar-size-lg: 48px;
+  --shadow-sm: 0px 1px 2px rgba(0, 0, 0, 0.06), 0px 1px 3px rgba(0, 0, 0, 0.10);
+  --shadow-md: 0px 4px 6px -1px rgba(0, 0, 0, 0.10), 0px 2px 4px -2px rgba(0, 0, 0, 0.10);
+  --shadow-lg: 0px 10px 15px -3px rgba(0, 0, 0, 0.10), 0px 4px 6px -4px rgba(0, 0, 0, 0.10);
+  --shadow-sm-dark: 0px 1px 2px rgba(0, 0, 0, 0.30), 0px 1px 3px rgba(0, 0, 0, 0.40);
+  --shadow-md-dark: 0px 4px 6px -1px rgba(0, 0, 0, 0.40), 0px 2px 4px -2px rgba(0, 0, 0, 0.40);
+  --shadow-lg-dark: 0px 10px 15px -3px rgba(0, 0, 0, 0.45), 0px 4px 6px -4px rgba(0, 0, 0, 0.45);
+  --background-page: var(--color-neutral-950);
+  --background-base: var(--color-neutral-950);
+  --background-subtle: var(--color-neutral-900);
+  --background-strong: var(--color-neutral-800);
+  --surface-base: var(--color-neutral-900);
+  --surface-raised: var(--color-neutral-800);
+  --surface-container: var(--color-neutral-800);
+  --surface-subtle: var(--color-neutral-900);
+  --surface-inverse: var(--color-neutral-50);
+  --surface-accent-bg: var(--color-neutral-800);
+  --surface-accent-text: var(--color-neutral-50);
+  --surface-accent-border: var(--color-neutral-700);
+  --surface-ink: var(--color-ink-500);
+  --surface-highlight-bg: var(--color-red-500);
+  --surface-highlight-text: var(--color-neutral-50);
+  --text-primary: var(--color-neutral-50);
+  --text-secondary: var(--color-neutral-400);
+  --text-tertiary: var(--color-neutral-600);
+  --text-disabled: var(--color-neutral-700);
+  --text-inverse: var(--color-neutral-900);
+  --text-brand: var(--color-accent-500);
+  --text-on-brand: var(--color-white);
+  --text-on-ink: var(--color-neutral-50);
+  --border-default: var(--color-neutral-700);
+  --border-subtle: var(--color-neutral-800);
+  --border-strong: var(--color-neutral-600);
+  --border-brand: var(--color-neutral-500);
+  --border-inverse: var(--color-neutral-50);
+  --brand-main: var(--color-main-500);
+  --brand-subtle: var(--color-main-50);
+  --brand-strong: var(--color-main-600);
+  --brand-action-hover: var(--color-main-600);
+  --brand-action-press: var(--color-main-700);
+  --brand-gold: var(--color-accent-400);
+  --brand-leaf: var(--color-leaf-500);
+  --brand-sky: var(--color-info-400);
+  --feedback-success-bg: var(--color-leaf-950);
+  --feedback-success-border: var(--color-leaf-800);
+  --feedback-success-text: var(--color-leaf-300);
+  --feedback-success-icon: var(--color-leaf-400);
+  --feedback-warning-bg: var(--color-main-950);
+  --feedback-warning-border: var(--color-main-800);
+  --feedback-warning-text: var(--color-main-300);
+  --feedback-warning-icon: var(--color-main-400);
+  --feedback-error-bg: var(--color-accent-950);
+  --feedback-error-border: var(--color-accent-800);
+  --feedback-error-text: var(--color-accent-300);
+  --feedback-error-icon: var(--color-accent-400);
+  --feedback-info-bg: var(--color-info-950);
+  --feedback-info-border: var(--color-info-800);
+  --feedback-info-text: var(--color-info-300);
+  --feedback-info-icon: var(--color-info-400);
+  --focus-ring-color: var(--color-info-400);
+  --focus-ring-offset: var(--color-neutral-950);
+  --interaction-hover-overlay: var(--color-neutral-50);
+  --interaction-active-overlay: var(--color-neutral-50);
+  --interaction-link-default: var(--color-info-400);
+  --interaction-link-hover: var(--color-info-300);
+  --interaction-link-visited: var(--color-info-600);
+  --divider-default: var(--color-neutral-800);
+  --divider-strong: var(--color-neutral-600);
+  --button-primary-text: var(--color-neutral-900);
+  --button-danger-bg-press: var(--color-accent-800);
+  --button-letter-spacing: var(--typography-tracking-caps);
+  --button-font-weight: var(--typography-weight-extrabold);
+  --card-shadow: var(--shadow-sm-dark);
+  --nav-bg: var(--color-neutral-950);
+  --modal-shadow: var(--shadow-lg-dark);
+  --toast-shadow: var(--shadow-md-dark);
+  --tooltip-shadow: var(--shadow-sm-dark);
+  --strip-bg: var(--color-neutral-500);
+  --footer-bg: var(--color-neutral-950);
+  --text-brand-accent: var(--brand-main);
+  --brand-action: var(--brand-main);
+  --button-primary-bg-hover: var(--brand-action-hover);
+  --button-primary-bg-press: var(--brand-action-press);
+  --button-secondary-bg: var(--surface-base);
+  --button-secondary-bg-hover: var(--background-subtle);
+  --button-secondary-text: var(--text-primary);
+  --button-secondary-border: var(--border-strong);
+  --button-secondary-bg-press: var(--background-strong);
+  --button-ghost-bg: var(--surface-base);
+  --button-ghost-bg-hover: var(--background-subtle);
+  --button-ghost-text: var(--text-primary);
+  --button-ghost-bg-press: var(--background-strong);
+  --button-danger-bg: var(--feedback-error-icon);
+  --button-danger-bg-hover: var(--background-subtle);
+  --button-danger-text: var(--text-primary);
+  --button-danger-border: var(--feedback-error-icon);
+  --button-disabled-bg: var(--background-strong);
+  --button-disabled-text: var(--text-disabled);
+  --button-disabled-border: var(--border-subtle);
+  --input-bg: var(--surface-base);
+  --input-bg-focus: var(--surface-base);
+  --input-bg-disabled: var(--background-subtle);
+  --input-border: var(--border-default);
+  --input-border-error: var(--feedback-error-border);
+  --input-border-success: var(--feedback-success-border);
+  --input-text: var(--text-primary);
+  --input-placeholder: var(--text-tertiary);
+  --input-label: var(--text-secondary);
+  --input-border-hover: var(--border-strong);
+  --input-border-disabled: var(--border-subtle);
+  --input-text-disabled: var(--text-disabled);
+  --card-bg: var(--surface-raised);
+  --card-border: var(--border-default);
+  --card-text: var(--text-primary);
+  --card-bg-hover: var(--surface-subtle);
+  --card-border-hover: var(--border-strong);
+  --nav-border: var(--border-default);
+  --nav-item-default: var(--text-secondary);
+  --nav-item-active: var(--brand-main);
+  --nav-item-hover: var(--text-primary);
+  --nav-logo-text: var(--text-primary);
+  --nav-logo-accent: var(--brand-main);
+  --modal-bg: var(--surface-raised);
+  --modal-border: var(--border-default);
+  --modal-text: var(--text-primary);
+  --pill-base-bg: var(--background-subtle);
+  --pill-base-text: var(--text-secondary);
+  --pill-base-border: var(--border-default);
+  --pill-brand-bg: var(--brand-subtle);
+  --pill-brand-text: var(--brand-strong);
+  --pill-success-bg: var(--feedback-success-bg);
+  --pill-success-text: var(--feedback-success-text);
+  --pill-warning-bg: var(--feedback-warning-bg);
+  --pill-warning-text: var(--feedback-warning-text);
+  --pill-error-bg: var(--feedback-error-bg);
+  --pill-error-text: var(--feedback-error-text);
+  --pill-filter-bg: var(--surface-base);
+  --pill-filter-bg-active: var(--surface-raised);
+  --pill-filter-border: var(--border-default);
+  --pill-filter-text: var(--text-secondary);
+  --pill-filter-text-active: var(--text-primary);
+  --toast-bg: var(--surface-raised);
+  --toast-border: var(--border-default);
+  --toast-text: var(--text-primary);
+  --tooltip-bg: var(--surface-raised);
+  --tooltip-text: var(--text-primary);
+  --avatar-bg: var(--brand-subtle);
+  --avatar-text: var(--brand-strong);
+  --avatar-border: var(--border-default);
+  --hero-text: var(--text-primary);
+  --hero-bg: var(--background-base);
+  --process-circle-bg: var(--background-strong);
+  --footer-social-icon-bg: var(--surface-raised);
+  --footer-text: var(--text-secondary);
+  --footer-link-hover: var(--text-primary);
+  --footer-border: var(--border-default);
+  --footer-heading: var(--text-primary);
+  --footer-legal-text: var(--text-secondary);
+  --button-primary-bg: var(--brand-action);
+  --button-primary-border: var(--brand-action);
+  --input-border-focus: var(--brand-action);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+--typography-heading-size: 32;
+  --typography-heading-family: Hanley Pro Block;
+  --typography-subheading-size: 28;
+  --typography-body-size: 16;
+  --typography-body-family: Montserrat;
+  --typography-label-size: 14;
+  --typography-caption-size: 12;
+  --typography-hero-size: 104;
+  --surface-inverse-subtle: rgba(0, 0, 0, 0.11);
+  --text-inverse-secondary: rgba(22, 22, 21, 0.61);
+  --border-inverse-subtle: rgba(0, 0, 0, 0.24);
+  --overlay-modal: rgba(0, 0, 0, 0.7);
+  --overlay-card: rgba(0, 0, 0, 0.24);
+  --overlay-hero: rgba(0, 0, 0, 0.62);
+  --button-ghost-border: rgba(0, 0, 0, 0);
+  --button-size-sm-height: 32px;
+  --button-size-sm-padding-x: 12px;
+  --button-size-md-height: 40px;
+  --button-size-md-padding-x: 16px;
+  --button-size-lg-height: 48px;
+  --button-size-lg-padding-x: 24px;
+  --button-radius: 9999px;
+  --input-radius: 8px;
+  --input-padding-x: 16px;
+  --input-padding-y: 12px;
+  --card-radius: 12px;
+  --card-padding: 24px;
+  --nav-height: 64px;
+  --modal-overlay: rgba(0, 0, 0, 0.6);
+  --modal-radius: 16px;
+  --pill-radius: 9999px;
+  --pill-sm-padding-x: 8px;
+  --pill-md-padding-x: 12px;
+  --toast-radius: 12px;
+  --tooltip-radius: 4px;
+  --avatar-size-sm: 32px;
+  --avatar-size-md: 40px;
+  --avatar-size-lg: 48px;
+  --shadow-sm: 0px 1px 2px rgba(0, 0, 0, 0.06), 0px 1px 3px rgba(0, 0, 0, 0.10);
+  --shadow-md: 0px 4px 6px -1px rgba(0, 0, 0, 0.10), 0px 2px 4px -2px rgba(0, 0, 0, 0.10);
+  --shadow-lg: 0px 10px 15px -3px rgba(0, 0, 0, 0.10), 0px 4px 6px -4px rgba(0, 0, 0, 0.10);
+  --shadow-sm-dark: 0px 1px 2px rgba(0, 0, 0, 0.30), 0px 1px 3px rgba(0, 0, 0, 0.40);
+  --shadow-md-dark: 0px 4px 6px -1px rgba(0, 0, 0, 0.40), 0px 2px 4px -2px rgba(0, 0, 0, 0.40);
+  --shadow-lg-dark: 0px 10px 15px -3px rgba(0, 0, 0, 0.45), 0px 4px 6px -4px rgba(0, 0, 0, 0.45);
+  --background-page: var(--color-neutral-950);
+  --background-base: var(--color-neutral-950);
+  --background-subtle: var(--color-neutral-900);
+  --background-strong: var(--color-neutral-800);
+  --surface-base: var(--color-neutral-900);
+  --surface-raised: var(--color-neutral-800);
+  --surface-container: var(--color-neutral-800);
+  --surface-subtle: var(--color-neutral-900);
+  --surface-inverse: var(--color-neutral-50);
+  --surface-accent-bg: var(--color-neutral-800);
+  --surface-accent-text: var(--color-neutral-50);
+  --surface-accent-border: var(--color-neutral-700);
+  --surface-ink: var(--color-ink-500);
+  --surface-highlight-bg: var(--color-red-500);
+  --surface-highlight-text: var(--color-neutral-50);
+  --text-primary: var(--color-neutral-50);
+  --text-secondary: var(--color-neutral-400);
+  --text-tertiary: var(--color-neutral-600);
+  --text-disabled: var(--color-neutral-700);
+  --text-inverse: var(--color-neutral-900);
+  --text-brand: var(--color-accent-500);
+  --text-on-brand: var(--color-white);
+  --text-on-ink: var(--color-neutral-50);
+  --border-default: var(--color-neutral-700);
+  --border-subtle: var(--color-neutral-800);
+  --border-strong: var(--color-neutral-600);
+  --border-brand: var(--color-neutral-500);
+  --border-inverse: var(--color-neutral-50);
+  --brand-main: var(--color-main-500);
+  --brand-subtle: var(--color-main-50);
+  --brand-strong: var(--color-main-600);
+  --brand-action-hover: var(--color-main-600);
+  --brand-action-press: var(--color-main-700);
+  --brand-gold: var(--color-accent-400);
+  --brand-leaf: var(--color-leaf-500);
+  --brand-sky: var(--color-info-400);
+  --feedback-success-bg: var(--color-leaf-950);
+  --feedback-success-border: var(--color-leaf-800);
+  --feedback-success-text: var(--color-leaf-300);
+  --feedback-success-icon: var(--color-leaf-400);
+  --feedback-warning-bg: var(--color-main-950);
+  --feedback-warning-border: var(--color-main-800);
+  --feedback-warning-text: var(--color-main-300);
+  --feedback-warning-icon: var(--color-main-400);
+  --feedback-error-bg: var(--color-accent-950);
+  --feedback-error-border: var(--color-accent-800);
+  --feedback-error-text: var(--color-accent-300);
+  --feedback-error-icon: var(--color-accent-400);
+  --feedback-info-bg: var(--color-info-950);
+  --feedback-info-border: var(--color-info-800);
+  --feedback-info-text: var(--color-info-300);
+  --feedback-info-icon: var(--color-info-400);
+  --focus-ring-color: var(--color-info-400);
+  --focus-ring-offset: var(--color-neutral-950);
+  --interaction-hover-overlay: var(--color-neutral-50);
+  --interaction-active-overlay: var(--color-neutral-50);
+  --interaction-link-default: var(--color-info-400);
+  --interaction-link-hover: var(--color-info-300);
+  --interaction-link-visited: var(--color-info-600);
+  --divider-default: var(--color-neutral-800);
+  --divider-strong: var(--color-neutral-600);
+  --button-primary-text: var(--color-neutral-900);
+  --button-danger-bg-press: var(--color-accent-800);
+  --button-letter-spacing: var(--typography-tracking-caps);
+  --button-font-weight: var(--typography-weight-extrabold);
+  --card-shadow: var(--shadow-sm-dark);
+  --nav-bg: var(--color-neutral-950);
+  --modal-shadow: var(--shadow-lg-dark);
+  --toast-shadow: var(--shadow-md-dark);
+  --tooltip-shadow: var(--shadow-sm-dark);
+  --strip-bg: var(--color-neutral-500);
+  --footer-bg: var(--color-neutral-950);
+  --text-brand-accent: var(--brand-main);
+  --brand-action: var(--brand-main);
+  --button-primary-bg-hover: var(--brand-action-hover);
+  --button-primary-bg-press: var(--brand-action-press);
+  --button-secondary-bg: var(--surface-base);
+  --button-secondary-bg-hover: var(--background-subtle);
+  --button-secondary-text: var(--text-primary);
+  --button-secondary-border: var(--border-strong);
+  --button-secondary-bg-press: var(--background-strong);
+  --button-ghost-bg: var(--surface-base);
+  --button-ghost-bg-hover: var(--background-subtle);
+  --button-ghost-text: var(--text-primary);
+  --button-ghost-bg-press: var(--background-strong);
+  --button-danger-bg: var(--feedback-error-icon);
+  --button-danger-bg-hover: var(--background-subtle);
+  --button-danger-text: var(--text-primary);
+  --button-danger-border: var(--feedback-error-icon);
+  --button-disabled-bg: var(--background-strong);
+  --button-disabled-text: var(--text-disabled);
+  --button-disabled-border: var(--border-subtle);
+  --input-bg: var(--surface-base);
+  --input-bg-focus: var(--surface-base);
+  --input-bg-disabled: var(--background-subtle);
+  --input-border: var(--border-default);
+  --input-border-error: var(--feedback-error-border);
+  --input-border-success: var(--feedback-success-border);
+  --input-text: var(--text-primary);
+  --input-placeholder: var(--text-tertiary);
+  --input-label: var(--text-secondary);
+  --input-border-hover: var(--border-strong);
+  --input-border-disabled: var(--border-subtle);
+  --input-text-disabled: var(--text-disabled);
+  --card-bg: var(--surface-raised);
+  --card-border: var(--border-default);
+  --card-text: var(--text-primary);
+  --card-bg-hover: var(--surface-subtle);
+  --card-border-hover: var(--border-strong);
+  --nav-border: var(--border-default);
+  --nav-item-default: var(--text-secondary);
+  --nav-item-active: var(--brand-main);
+  --nav-item-hover: var(--text-primary);
+  --nav-logo-text: var(--text-primary);
+  --nav-logo-accent: var(--brand-main);
+  --modal-bg: var(--surface-raised);
+  --modal-border: var(--border-default);
+  --modal-text: var(--text-primary);
+  --pill-base-bg: var(--background-subtle);
+  --pill-base-text: var(--text-secondary);
+  --pill-base-border: var(--border-default);
+  --pill-brand-bg: var(--brand-subtle);
+  --pill-brand-text: var(--brand-strong);
+  --pill-success-bg: var(--feedback-success-bg);
+  --pill-success-text: var(--feedback-success-text);
+  --pill-warning-bg: var(--feedback-warning-bg);
+  --pill-warning-text: var(--feedback-warning-text);
+  --pill-error-bg: var(--feedback-error-bg);
+  --pill-error-text: var(--feedback-error-text);
+  --pill-filter-bg: var(--surface-base);
+  --pill-filter-bg-active: var(--surface-raised);
+  --pill-filter-border: var(--border-default);
+  --pill-filter-text: var(--text-secondary);
+  --pill-filter-text-active: var(--text-primary);
+  --toast-bg: var(--surface-raised);
+  --toast-border: var(--border-default);
+  --toast-text: var(--text-primary);
+  --tooltip-bg: var(--surface-raised);
+  --tooltip-text: var(--text-primary);
+  --avatar-bg: var(--brand-subtle);
+  --avatar-text: var(--brand-strong);
+  --avatar-border: var(--border-default);
+  --hero-text: var(--text-primary);
+  --hero-bg: var(--background-base);
+  --process-circle-bg: var(--background-strong);
+  --footer-social-icon-bg: var(--surface-raised);
+  --footer-text: var(--text-secondary);
+  --footer-link-hover: var(--text-primary);
+  --footer-border: var(--border-default);
+  --footer-heading: var(--text-primary);
+  --footer-legal-text: var(--text-secondary);
+  --button-primary-bg: var(--brand-action);
+  --button-primary-border: var(--brand-action);
+  --input-border-focus: var(--brand-action);
+  color-scheme: dark;
+}
+:root[data-theme="light"] { color-scheme: light; }
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--background-page);
+  color: var(--text-primary);
+  font-family: var(--f-body);
+  font-size: var(--typography-styles-body-md-size);
+  line-height: var(--typography-styles-body-md-line-height);
+  padding-inline: clamp(16px, 5vw, 64px);
+  padding-block: 0 var(--spacing-24);
+  -webkit-font-smoothing: antialiased;
+}
+code { font-family: var(--f-mono); font-size: 0.8125rem; color: var(--text-secondary); }
+a { color: var(--interaction-link-visited); text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+:focus-visible { outline: 2px solid var(--focus-ring-color); outline-offset: 2px; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+p { margin: 0; }
+
+/* ── barra ── */
+.bar-top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--spacing-3) var(--spacing-6);
+  margin-inline: calc(-1 * clamp(16px, 5vw, 64px));
+  padding: var(--spacing-3) clamp(16px, 5vw, 64px);
+  background: var(--background-page);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.bar-top .name { font-family: var(--f-display); font-size: 1.375rem; letter-spacing: 0.01em; text-transform: uppercase; margin-right: auto; }
+.bar-top .name i { font-style: normal; color: var(--text-brand); }
+.bar-top nav { display: flex; flex-wrap: wrap; gap: var(--spacing-2) var(--spacing-4); font-size: var(--typography-styles-body-sm-size); }
+.bar-top nav a { color: var(--text-secondary); text-decoration: none; }
+.bar-top nav a:hover { color: var(--text-primary); text-decoration: underline; }
+.theme {
+  font: 500 var(--typography-styles-label-md-size)/1 var(--f-body);
+  background: var(--surface-base); color: var(--text-primary);
+  border: 1px solid var(--border-default); border-radius: var(--radius-full);
+  padding: var(--spacing-2) var(--spacing-4); cursor: pointer;
+}
+
+/* ── apertura ── */
+.open { padding-block: var(--spacing-16) var(--spacing-12); display: grid; gap: var(--spacing-6); max-width: 60rem; }
+.over { font: 700 var(--typography-styles-overline-lg-size)/var(--typography-styles-overline-lg-line-height) var(--f-body);
+  letter-spacing: var(--typography-styles-overline-lg-letter-spacing); text-transform: uppercase; color: var(--text-secondary); }
+.open h1 {
+  font-family: var(--f-display); font-weight: 400; text-transform: uppercase;
+  font-size: clamp(3rem, 12vw, var(--typography-styles-display-hero-size));
+  line-height: 1.02; letter-spacing: -0.01em;
+}
+.open h1 .dot { color: var(--text-brand); }
+.lede { max-width: var(--measure); font-family: var(--f-editorial); font-size: var(--typography-styles-body-lg-size); line-height: var(--typography-styles-body-lg-line-height); color: var(--text-secondary); }
+.facts { display: flex; flex-wrap: wrap; gap: var(--spacing-2) var(--spacing-6); font-size: var(--typography-styles-body-sm-size); color: var(--text-secondary); }
+.facts b { color: var(--text-primary); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* ── secciones ── */
+section > *, .open > * { min-width: 0; }
+section { padding-block: var(--spacing-12); border-top: 1px solid var(--divider-default); display: grid; gap: var(--spacing-8); scroll-margin-top: 4.5rem; }
+.sh { display: grid; gap: var(--spacing-3); max-width: var(--measure); }
+.sh h2 { font-family: var(--f-display); font-weight: 400; text-transform: uppercase; font-size: var(--typography-styles-display-sm-size); line-height: var(--typography-styles-display-sm-line-height); }
+.sh p { color: var(--text-secondary); }
+h3 { font: 700 var(--typography-styles-label-md-size)/1.3 var(--f-body); color: var(--text-secondary); }
+
+/* marca */
+.brand-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr)); gap: var(--spacing-3); }
+.brand { background: var(--bg); color: var(--fg); padding: var(--spacing-5); display: grid; gap: var(--spacing-2); align-content: space-between; min-height: 13rem; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); }
+.brand h3 { color: inherit; font: 400 1.5rem/1 var(--f-display); text-transform: uppercase; }
+.brand p { font-size: var(--typography-styles-body-sm-size); line-height: 1.4; }
+.brand dl { display: grid; grid-template-columns: auto 1fr; gap: 2px var(--spacing-3); margin: 0; font: 400 0.75rem/1.4 var(--f-mono); }
+.brand dt { opacity: 0.8; } .brand dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+.pair { flex: none; display: inline-grid; place-items: center; width: 3rem; height: 3rem; background: var(--bg); color: var(--fg); font: 400 1.25rem/1 var(--f-display); border: 1px solid var(--border-subtle); }
+.pair.sm { width: 2rem; height: 2rem; font-size: 0.9rem; }
+
+/* rampas */
+.ramps { display: grid; gap: var(--spacing-6); }
+.ramp { display: grid; gap: var(--spacing-2); min-width: 0; }
+.ramp ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); gap: 3px; }
+.chip { display: grid; gap: 2px; min-width: 0; }
+.chip .sw { display: block; aspect-ratio: 1 / 1.1; max-width: 100%; background: var(--c); border: 1px solid var(--border-subtle); }
+.chip.anchor .sw { outline: 2px solid var(--text-primary); outline-offset: 2px; }
+.chip .stop { font: 700 0.75rem/1.2 var(--f-body); font-variant-numeric: tabular-nums; }
+.chip .hex { font: 400 0.6875rem/1.2 var(--f-mono); color: var(--text-secondary); overflow-wrap: anywhere; }
+@media (max-width: 640px) {
+  .ramp ol { grid-template-columns: repeat(6, minmax(0, 1fr)); row-gap: var(--spacing-3); }
+}
+
+/* roles */
+.roles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); gap: var(--spacing-8) var(--spacing-6); }
+.roles ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--spacing-2); }
+.roles li { display: flex; align-items: center; gap: var(--spacing-3); min-width: 0; }
+.roles .s { flex: none; width: 2.25rem; height: 2.25rem; background: var(--c); border: 1px solid var(--border-subtle); }
+.roles .t { flex: none; width: 2.25rem; font: 400 1.25rem/1 var(--f-display); color: var(--c); text-align: center; }
+.roles .b { flex: none; width: 2.25rem; height: 2.25rem; border: 2px solid var(--c); background: var(--surface-base); }
+.fb { display: grid; gap: var(--spacing-2); }
+.fb div { padding: var(--spacing-3) var(--spacing-4); border: 1px solid; border-radius: var(--radius-md); font-size: var(--typography-styles-body-sm-size); }
+
+/* tipografía */
+.types { list-style: none; margin: 0; padding: 0; }
+.trow { display: grid; grid-template-columns: minmax(10rem, 13rem) minmax(0, 1fr); gap: var(--spacing-2) var(--spacing-6); padding-block: var(--spacing-4); border-bottom: 1px solid var(--border-subtle); align-items: baseline; }
+.tmeta { display: grid; gap: 2px; font-size: 0.75rem; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+.trow p { min-width: 0; overflow-wrap: break-word; max-width: 52rem; }
+.t-display { font-family: var(--f-display); font-weight: 400; text-transform: uppercase; }
+.t-editorial { font-family: var(--f-editorial); }
+.t-mono { font-family: var(--f-mono); }
+.t-heading.t-body { font-weight: 700; }
+.t-label { font-weight: 700; }
+.t-overline { font-weight: 700; text-transform: uppercase; color: var(--text-secondary); }
+@media (max-width: 640px) { .trow { grid-template-columns: minmax(0, 1fr); } .t-display { font-size: min(var(--typography-styles-display-lg-size), 14vw) !important; line-height: 1.08 !important; } }
+
+/* componentes */
+.row { display: flex; flex-wrap: wrap; gap: var(--spacing-3); align-items: center; }
+.btn { font: var(--typography-weight-bold) var(--typography-styles-label-md-size)/1 var(--f-body); letter-spacing: var(--button-letter-spacing, 0.04em); height: var(--button-size-md-height); padding-inline: var(--button-size-md-padding-x); border-radius: var(--button-radius); border: 1.5px solid transparent; cursor: pointer; }
+.btn.primary { background: var(--button-primary-bg); color: var(--button-primary-text); border-color: var(--button-primary-border); }
+.btn.primary:hover { background: var(--button-primary-bg-hover); }
+.btn.primary:active { background: var(--button-primary-bg-press); }
+.btn.secondary { background: var(--button-secondary-bg); color: var(--button-secondary-text); border-color: var(--button-secondary-border); }
+.btn.secondary:hover { background: var(--button-secondary-bg-hover); }
+.btn.ghost { background: var(--button-ghost-bg); color: var(--button-ghost-text); border-color: var(--button-ghost-border); }
+.btn.ghost:hover { background: var(--button-ghost-bg-hover); }
+.btn.danger { background: var(--button-danger-bg); color: var(--button-danger-text); border-color: var(--button-danger-border); }
+.btn:disabled { background: var(--button-disabled-bg); color: var(--button-disabled-text); border-color: var(--button-disabled-border); cursor: not-allowed; }
+.btn.focus { outline: 2px solid var(--focus-ring-color); outline-offset: 2px; }
+.btn.sm { height: var(--button-size-sm-height); padding-inline: var(--button-size-sm-padding-x); }
+.btn.lg { height: var(--button-size-lg-height); padding-inline: var(--button-size-lg-padding-x); }
+.fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: var(--spacing-4); max-width: 52rem; }
+.field { display: grid; gap: var(--spacing-1); }
+.field label { font-size: var(--typography-styles-body-sm-size); color: var(--input-label); font-weight: 500; }
+.field input { font: inherit; background: var(--input-bg); color: var(--input-text); border: 1.5px solid var(--input-border); border-radius: var(--input-radius); padding: var(--input-padding-y) var(--input-padding-x); }
+.field input::placeholder { color: var(--input-placeholder); }
+.field input:hover { border-color: var(--input-border-hover); }
+.field input:focus { outline: none; border-color: var(--input-border-focus); box-shadow: 0 0 0 2px var(--focus-ring-color); }
+.field.err input { border-color: var(--input-border-error); }
+.field.err small { color: var(--feedback-error-text); }
+.field input:disabled { background: var(--input-bg-disabled); color: var(--input-text-disabled); border-color: var(--input-border-disabled); }
+.pills { display: flex; flex-wrap: wrap; gap: var(--spacing-2); }
+.pill { font: 700 var(--typography-styles-label-sm-size)/1 var(--f-body); padding: 0.45rem var(--pill-md-padding-x); border-radius: var(--pill-radius); }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: var(--spacing-4); max-width: 60rem; }
+.card { background: var(--card-bg); color: var(--card-text); border: 1px solid var(--card-border); border-radius: var(--card-radius); padding: var(--card-padding); box-shadow: var(--card-shadow); display: grid; gap: var(--spacing-3); }
+.card.int:hover { background: var(--card-bg-hover); border-color: var(--card-border-hover); }
+.card .kick { font: 700 var(--typography-styles-overline-sm-size)/1.3 var(--f-body); letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-brand-accent); }
+.card h4 { margin: 0; font: 400 1.5rem/1.1 var(--f-display); text-transform: uppercase; text-wrap: balance; }
+.card p { color: var(--text-secondary); font-size: var(--typography-styles-body-sm-size); }
+.ink-band { background: var(--surface-ink); color: var(--text-on-ink); padding: var(--spacing-6); border-radius: var(--radius-lg); display: grid; gap: var(--spacing-2); max-width: 60rem; }
+.ink-band b { font: 400 1.75rem/1.1 var(--f-display); text-transform: uppercase; }
+.highlight { background: var(--surface-highlight-bg); color: var(--surface-highlight-text); padding-inline: 0.2em; }
+
+/* contraste y escalas */
+.tablewrap { overflow-x: auto; border: 1px solid var(--border-subtle); }
+table { border-collapse: collapse; width: 100%; min-width: 46rem; font-size: 0.8125rem; }
+th, td { text-align: left; padding: var(--spacing-2) var(--spacing-3); border-bottom: 1px solid var(--border-subtle); vertical-align: middle; }
+th { font-weight: 700; color: var(--text-secondary); background: var(--background-subtle); position: sticky; top: 0; }
+td.num { font-variant-numeric: tabular-nums; text-align: right; }
+.state { font-weight: 700; font-size: 0.75rem; padding: 0.2rem 0.55rem; border-radius: var(--radius-full); white-space: nowrap; }
+.state.ok { background: var(--feedback-success-bg); color: var(--feedback-success-text); }
+.state.warn { background: var(--feedback-warning-bg); color: var(--feedback-warning-text); }
+.state.bad { background: var(--feedback-error-bg); color: var(--feedback-error-text); }
+.scale { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--spacing-2); }
+.scale li { display: grid; grid-template-columns: 2.5rem 1fr; align-items: center; gap: var(--spacing-3); }
+.scale .bar { display: block; height: 0.75rem; background: var(--brand-action); }
+.radii { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--spacing-5); }
+.radii li { display: grid; gap: var(--spacing-1); justify-items: center; }
+.rbox { width: 4rem; height: 4rem; background: var(--brand-subtle); border: 2px solid var(--brand-strong); display: block; }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: var(--spacing-10); }
+.shadows { display: flex; flex-wrap: wrap; gap: var(--spacing-6); }
+.shadows div { width: 7rem; height: 5rem; background: var(--surface-raised); border-radius: var(--radius-lg); display: grid; place-items: center; font: 400 0.75rem var(--f-mono); color: var(--text-secondary); }
+.note { font-size: var(--typography-styles-body-sm-size); color: var(--text-secondary); max-width: var(--measure); }
+footer.end { padding-top: var(--spacing-10); border-top: 1px solid var(--divider-default); color: var(--text-secondary); font-size: var(--typography-styles-body-sm-size); display: grid; gap: var(--spacing-2); max-width: var(--measure); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<header class="bar-top">
+  <span class="name">Divergentes<i>.</i></span>
+  <nav aria-label="Secciones">
+    <a href="#marca">Marca</a><a href="#escalas">Escalas</a><a href="#roles">Roles</a><a href="#tipo">Tipografía</a>
+    <a href="#componentes">Componentes</a><a href="#fundamentos">Fundamentos</a><a href="#contraste">Contraste</a>
+  </nav>
+  <button class="theme" id="theme" type="button" aria-label="Cambiar tema">Tema: sistema</button>
+</header>
+
+<main>
+<div class="open">
+  <p class="over">Sistema · @divergentes/ui v0.1.0</p>
+  <h1>Divergentes<span class="dot">.</span></h1>
+  <p class="lede">Los tokens del sitio de Divergentes, tal como los publica el paquete. Todo lo que ves en esta página sale de las variables del Figma maestro, compiladas a <code>tokens.css</code>. Si algo se ve mal acá, se arregla en Figma, no en el sitio.</p>
+  <div class="facts"><span><b>9</b> rampas de color</span><span><b>448</b> tokens en :root</span><span><b>2</b> temas</span><span>Fuente: <code>@divergentes/ui</code></span></div>
+</div>
+
+<section id="marca">
+  <div class="sh"><h2>Marca</h2><p>Los colores que identifican a Divergentes, con el stop que los publica y el rol que cumplen en los semánticos. El texto de cada tarjeta es el que más contraste da; los dos ratios están medidos.</p></div>
+  <div class="brand-grid"><article class="brand" style="--bg:var(--color-main-500);--fg:#161615"><h3>main/500</h3><p>brand/action, brand/main. Botón primario y acentos de navegación.</p><dl><dt>hex</dt><dd>#0FBDAF</dd><dt>blanco encima</dt><dd>2.35:1</dd><dt>neutral/900 encima</dt><dd>7.69:1</dd></dl></article><article class="brand" style="--bg:var(--color-accent-500);--fg:#161615"><h3>accent/500</h3><p>text/brand, feedback/error. El rojo de la marca.</p><dl><dt>hex</dt><dd>#FF003F</dd><dt>blanco encima</dt><dd>3.94:1</dd><dt>neutral/900 encima</dt><dd>4.59:1</dd></dl></article><article class="brand" style="--bg:var(--color-gold-500);--fg:#161615"><h3>gold/500</h3><p>brand/gold. Destacados.</p><dl><dt>hex</dt><dd>#FEDD00</dd><dt>blanco encima</dt><dd>1.35:1</dd><dt>neutral/900 encima</dt><dd>13.41:1</dd></dl></article><article class="brand" style="--bg:var(--color-leaf-500);--fg:#161615"><h3>leaf/500</h3><p>brand/leaf, feedback/success.</p><dl><dt>hex</dt><dd>#3AAF00</dd><dt>blanco encima</dt><dd>2.87:1</dd><dt>neutral/900 encima</dt><dd>6.30:1</dd></dl></article><article class="brand" style="--bg:var(--color-info-400);--fg:#161615"><h3>info/400</h3><p>brand/sky, focus/ring-color. Enlaces en info/500–700.</p><dl><dt>hex</dt><dd>#81C3E9</dd><dt>blanco encima</dt><dd>1.92:1</dd><dt>neutral/900 encima</dt><dd>9.41:1</dd></dl></article><article class="brand" style="--bg:var(--color-ink-500);--fg:#FFFFFF"><h3>ink/500</h3><p>surface/ink. Bandas oscuras con text/on-ink.</p><dl><dt>hex</dt><dd>#002A42</dd><dt>blanco encima</dt><dd>14.90:1</dd><dt>neutral/900 encima</dt><dd>1.22:1</dd></dl></article><article class="brand" style="--bg:var(--color-neutral-900);--fg:#FFFFFF"><h3>neutral/900</h3><p>text/primary en claro, surface/inverse.</p><dl><dt>hex</dt><dd>#161615</dd><dt>blanco encima</dt><dd>18.11:1</dd><dt>neutral/900 encima</dt><dd>1.00:1</dd></dl></article></div>
+</section>
+
+<section id="escalas">
+  <div class="sh"><h2>Escalas</h2><p>Las rampas tal como salen de Figma. El stop con aro es el que usa la marca. <code>red</code> repite los hex de <code>accent</code> y <code>amarillo</code> es un empalme de <code>leaf</code> con <code>gold</code>: se publican igual para no cambiar nada respecto de misitio-ui v0.1.6 y se revisan en Figma.</p></div>
+  <div class="ramps"><div class="ramp"><h3>neutral · grises acromáticos</h3><ol><li class="chip" style="--c:var(--color-neutral-50)"><span class="sw"></span><span class="stop">50</span><span class="hex">#FAFAF9</span></li><li class="chip" style="--c:var(--color-neutral-100)"><span class="sw"></span><span class="stop">100</span><span class="hex">#F0EFEE</span></li><li class="chip" style="--c:var(--color-neutral-200)"><span class="sw"></span><span class="stop">200</span><span class="hex">#DEDDDB</span></li><li class="chip" style="--c:var(--color-neutral-300)"><span class="sw"></span><span class="stop">300</span><span class="hex">#C2C0BD</span></li><li class="chip" style="--c:var(--color-neutral-400)"><span class="sw"></span><span class="stop">400</span><span class="hex">#9E9C98</span></li><li class="chip" style="--c:var(--color-neutral-500)"><span class="sw"></span><span class="stop">500</span><span class="hex">#797673</span></li><li class="chip" style="--c:var(--color-neutral-600)"><span class="sw"></span><span class="stop">600</span><span class="hex">#595856</span></li><li class="chip" style="--c:var(--color-neutral-700)"><span class="sw"></span><span class="stop">700</span><span class="hex">#3E3D3B</span></li><li class="chip" style="--c:var(--color-neutral-800)"><span class="sw"></span><span class="stop">800</span><span class="hex">#262524</span></li><li class="chip anchor" style="--c:var(--color-neutral-900)"><span class="sw"></span><span class="stop">900</span><span class="hex">#161615</span></li><li class="chip" style="--c:var(--color-neutral-950)"><span class="sw"></span><span class="stop">950</span><span class="hex">#0A0A09</span></li></ol></div>
+<div class="ramp"><h3>main · teal de marca, acción</h3><ol><li class="chip" style="--c:var(--color-main-50)"><span class="sw"></span><span class="stop">50</span><span class="hex">#F4FBFA</span></li><li class="chip" style="--c:var(--color-main-100)"><span class="sw"></span><span class="stop">100</span><span class="hex">#E3F5F3</span></li><li class="chip" style="--c:var(--color-main-200)"><span class="sw"></span><span class="stop">200</span><span class="hex">#BEF1ED</span></li><li class="chip" style="--c:var(--color-main-300)"><span class="sw"></span><span class="stop">300</span><span class="hex">#87F5ED</span></li><li class="chip" style="--c:var(--color-main-400)"><span class="sw"></span><span class="stop">400</span><span class="hex">#53F1E5</span></li><li class="chip anchor" style="--c:var(--color-main-500)"><span class="sw"></span><span class="stop">500</span><span class="hex">#0FBDAF</span></li><li class="chip" style="--c:var(--color-main-600)"><span class="sw"></span><span class="stop">600</span><span class="hex">#0C9B8F</span></li><li class="chip" style="--c:var(--color-main-700)"><span class="sw"></span><span class="stop">700</span><span class="hex">#0A7D73</span></li><li class="chip" style="--c:var(--color-main-800)"><span class="sw"></span><span class="stop">800</span><span class="hex">#085E57</span></li><li class="chip" style="--c:var(--color-main-900)"><span class="sw"></span><span class="stop">900</span><span class="hex">#044842</span></li><li class="chip" style="--c:var(--color-main-950)"><span class="sw"></span><span class="stop">950</span><span class="hex">#033430</span></li></ol></div>
+<div class="ramp"><h3>accent · rojo de marca, texto de marca y error</h3><ol><li class="chip" style="--c:var(--color-accent-50)"><span class="sw"></span><span class="stop">50</span><span class="hex">#FCF3F5</span></li><li class="chip" style="--c:var(--color-accent-100)"><span class="sw"></span><span class="stop">100</span><span class="hex">#F6E1E7</span></li><li class="chip" style="--c:var(--color-accent-200)"><span class="sw"></span><span class="stop">200</span><span class="hex">#F5BAC8</span></li><li class="chip" style="--c:var(--color-accent-300)"><span class="sw"></span><span class="stop">300</span><span class="hex">#FF7D9D</span></li><li class="chip" style="--c:var(--color-accent-400)"><span class="sw"></span><span class="stop">400</span><span class="hex">#FF4573</span></li><li class="chip anchor" style="--c:var(--color-accent-500)"><span class="sw"></span><span class="stop">500</span><span class="hex">#FF003F</span></li><li class="chip" style="--c:var(--color-accent-600)"><span class="sw"></span><span class="stop">600</span><span class="hex">#D10034</span></li><li class="chip" style="--c:var(--color-accent-700)"><span class="sw"></span><span class="stop">700</span><span class="hex">#A8002A</span></li><li class="chip" style="--c:var(--color-accent-800)"><span class="sw"></span><span class="stop">800</span><span class="hex">#80001F</span></li><li class="chip" style="--c:var(--color-accent-900)"><span class="sw"></span><span class="stop">900</span><span class="hex">#5E0017</span></li><li class="chip" style="--c:var(--color-accent-950)"><span class="sw"></span><span class="stop">950</span><span class="hex">#450011</span></li></ol></div>
+<div class="ramp"><h3>red · mismo hex que accent; lo usa surface/highlight</h3><ol><li class="chip" style="--c:var(--color-red-50)"><span class="sw"></span><span class="stop">50</span><span class="hex">#FCF3F5</span></li><li class="chip" style="--c:var(--color-red-100)"><span class="sw"></span><span class="stop">100</span><span class="hex">#F6E1E7</span></li><li class="chip" style="--c:var(--color-red-200)"><span class="sw"></span><span class="stop">200</span><span class="hex">#F5BAC8</span></li><li class="chip" style="--c:var(--color-red-300)"><span class="sw"></span><span class="stop">300</span><span class="hex">#FF7D9D</span></li><li class="chip" style="--c:var(--color-red-400)"><span class="sw"></span><span class="stop">400</span><span class="hex">#FF4573</span></li><li class="chip" style="--c:var(--color-red-500)"><span class="sw"></span><span class="stop">500</span><span class="hex">#FF003F</span></li><li class="chip" style="--c:var(--color-red-600)"><span class="sw"></span><span class="stop">600</span><span class="hex">#D10034</span></li><li class="chip" style="--c:var(--color-red-700)"><span class="sw"></span><span class="stop">700</span><span class="hex">#A8002A</span></li><li class="chip" style="--c:var(--color-red-800)"><span class="sw"></span><span class="stop">800</span><span class="hex">#80001F</span></li><li class="chip" style="--c:var(--color-red-900)"><span class="sw"></span><span class="stop">900</span><span class="hex">#5E0017</span></li><li class="chip" style="--c:var(--color-red-950)"><span class="sw"></span><span class="stop">950</span><span class="hex">#450011</span></li></ol></div>
+<div class="ramp"><h3>info · cielo, enlaces y foco</h3><ol><li class="chip" style="--c:var(--color-info-50)"><span class="sw"></span><span class="stop">50</span><span class="hex">#F7FBFE</span></li><li class="chip" style="--c:var(--color-info-100)"><span class="sw"></span><span class="stop">100</span><span class="hex">#DFF0F9</span></li><li class="chip" style="--c:var(--color-info-200)"><span class="sw"></span><span class="stop">200</span><span class="hex">#C2E2F4</span></li><li class="chip" style="--c:var(--color-info-300)"><span class="sw"></span><span class="stop">300</span><span class="hex">#A5D4EF</span></li><li class="chip anchor" style="--c:var(--color-info-400)"><span class="sw"></span><span class="stop">400</span><span class="hex">#81C3E9</span></li><li class="chip" style="--c:var(--color-info-500)"><span class="sw"></span><span class="stop">500</span><span class="hex">#5EB2E3</span></li><li class="chip" style="--c:var(--color-info-600)"><span class="sw"></span><span class="stop">600</span><span class="hex">#4F94BC</span></li><li class="chip" style="--c:var(--color-info-700)"><span class="sw"></span><span class="stop">700</span><span class="hex">#417696</span></li><li class="chip" style="--c:var(--color-info-800)"><span class="sw"></span><span class="stop">800</span><span class="hex">#32596F</span></li><li class="chip" style="--c:var(--color-info-900)"><span class="sw"></span><span class="stop">900</span><span class="hex">#274251</span></li><li class="chip" style="--c:var(--color-info-950)"><span class="sw"></span><span class="stop">950</span><span class="hex">#1F313C</span></li></ol></div>
+<div class="ramp"><h3>leaf · verde, éxito</h3><ol><li class="chip" style="--c:var(--color-leaf-50)"><span class="sw"></span><span class="stop">50</span><span class="hex">#F1FCE8</span></li><li class="chip" style="--c:var(--color-leaf-100)"><span class="sw"></span><span class="stop">100</span><span class="hex">#DEF7C6</span></li><li class="chip" style="--c:var(--color-leaf-200)"><span class="sw"></span><span class="stop">200</span><span class="hex">#B8EF87</span></li><li class="chip" style="--c:var(--color-leaf-300)"><span class="sw"></span><span class="stop">300</span><span class="hex">#86E048</span></li><li class="chip" style="--c:var(--color-leaf-400)"><span class="sw"></span><span class="stop">400</span><span class="hex">#5AC718</span></li><li class="chip anchor" style="--c:var(--color-leaf-500)"><span class="sw"></span><span class="stop">500</span><span class="hex">#3AAF00</span></li><li class="chip" style="--c:var(--color-leaf-600)"><span class="sw"></span><span class="stop">600</span><span class="hex">#2B8600</span></li><li class="chip" style="--c:var(--color-leaf-700)"><span class="sw"></span><span class="stop">700</span><span class="hex">#1E6000</span></li><li class="chip" style="--c:var(--color-leaf-800)"><span class="sw"></span><span class="stop">800</span><span class="hex">#133D00</span></li><li class="chip" style="--c:var(--color-leaf-900)"><span class="sw"></span><span class="stop">900</span><span class="hex">#092200</span></li><li class="chip" style="--c:var(--color-leaf-950)"><span class="sw"></span><span class="stop">950</span><span class="hex">#041100</span></li></ol></div>
+<div class="ramp"><h3>gold · amarillo de marca</h3><ol><li class="chip" style="--c:var(--color-gold-50)"><span class="sw"></span><span class="stop">50</span><span class="hex">#FEFCEC</span></li><li class="chip" style="--c:var(--color-gold-100)"><span class="sw"></span><span class="stop">100</span><span class="hex">#FEF7CD</span></li><li class="chip" style="--c:var(--color-gold-200)"><span class="sw"></span><span class="stop">200</span><span class="hex">#FEF19A</span></li><li class="chip" style="--c:var(--color-gold-300)"><span class="sw"></span><span class="stop">300</span><span class="hex">#FEEA67</span></li><li class="chip" style="--c:var(--color-gold-400)"><span class="sw"></span><span class="stop">400</span><span class="hex">#FFE433</span></li><li class="chip anchor" style="--c:var(--color-gold-500)"><span class="sw"></span><span class="stop">500</span><span class="hex">#FEDD00</span></li><li class="chip" style="--c:var(--color-gold-600)"><span class="sw"></span><span class="stop">600</span><span class="hex">#D1B500</span></li><li class="chip" style="--c:var(--color-gold-700)"><span class="sw"></span><span class="stop">700</span><span class="hex">#A89200</span></li><li class="chip" style="--c:var(--color-gold-800)"><span class="sw"></span><span class="stop">800</span><span class="hex">#857300</span></li><li class="chip" style="--c:var(--color-gold-900)"><span class="sw"></span><span class="stop">900</span><span class="hex">#615400</span></li><li class="chip" style="--c:var(--color-gold-950)"><span class="sw"></span><span class="stop">950</span><span class="hex">#3D3500</span></li></ol></div>
+<div class="ramp"><h3>amarillo · 400–600 son amarillo; el resto es copia de leaf (ALLOW en check-ramps)</h3><ol><li class="chip" style="--c:var(--color-amarillo-50)"><span class="sw"></span><span class="stop">50</span><span class="hex">#F1FCE8</span></li><li class="chip" style="--c:var(--color-amarillo-100)"><span class="sw"></span><span class="stop">100</span><span class="hex">#DEF7C6</span></li><li class="chip" style="--c:var(--color-amarillo-200)"><span class="sw"></span><span class="stop">200</span><span class="hex">#B8EF87</span></li><li class="chip" style="--c:var(--color-amarillo-300)"><span class="sw"></span><span class="stop">300</span><span class="hex">#86E048</span></li><li class="chip" style="--c:var(--color-amarillo-400)"><span class="sw"></span><span class="stop">400</span><span class="hex">#FFE745</span></li><li class="chip" style="--c:var(--color-amarillo-500)"><span class="sw"></span><span class="stop">500</span><span class="hex">#FEDD00</span></li><li class="chip" style="--c:var(--color-amarillo-600)"><span class="sw"></span><span class="stop">600</span><span class="hex">#D0B500</span></li><li class="chip" style="--c:var(--color-amarillo-700)"><span class="sw"></span><span class="stop">700</span><span class="hex">#1E6000</span></li><li class="chip" style="--c:var(--color-amarillo-800)"><span class="sw"></span><span class="stop">800</span><span class="hex">#133D00</span></li><li class="chip" style="--c:var(--color-amarillo-900)"><span class="sw"></span><span class="stop">900</span><span class="hex">#092200</span></li><li class="chip" style="--c:var(--color-amarillo-950)"><span class="sw"></span><span class="stop">950</span><span class="hex">#041100</span></li></ol></div>
+<div class="ramp"><h3>ink · azul tinta, superficies oscuras</h3><ol><li class="chip" style="--c:var(--color-ink-50)"><span class="sw"></span><span class="stop">50</span><span class="hex">#E9F5FB</span></li><li class="chip" style="--c:var(--color-ink-100)"><span class="sw"></span><span class="stop">100</span><span class="hex">#CBE6F6</span></li><li class="chip" style="--c:var(--color-ink-200)"><span class="sw"></span><span class="stop">200</span><span class="hex">#8BCAEE</span></li><li class="chip" style="--c:var(--color-ink-300)"><span class="sw"></span><span class="stop">300</span><span class="hex">#30A5E8</span></li><li class="chip" style="--c:var(--color-ink-400)"><span class="sw"></span><span class="stop">400</span><span class="hex">#006EAD</span></li><li class="chip anchor" style="--c:var(--color-ink-500)"><span class="sw"></span><span class="stop">500</span><span class="hex">#002A42</span></li><li class="chip" style="--c:var(--color-ink-600)"><span class="sw"></span><span class="stop">600</span><span class="hex">#002338</span></li><li class="chip" style="--c:var(--color-ink-700)"><span class="sw"></span><span class="stop">700</span><span class="hex">#001D2E</span></li><li class="chip" style="--c:var(--color-ink-800)"><span class="sw"></span><span class="stop">800</span><span class="hex">#001724</span></li><li class="chip" style="--c:var(--color-ink-900)"><span class="sw"></span><span class="stop">900</span><span class="hex">#00101A</span></li><li class="chip" style="--c:var(--color-ink-950)"><span class="sw"></span><span class="stop">950</span><span class="hex">#000B12</span></li></ol></div></div>
+</section>
+
+<section id="roles">
+  <div class="sh"><h2>Roles</h2><p>Lo que usa la interfaz. Cambiá el tema arriba: los nombres no cambian, el valor sí.</p></div>
+  <div class="roles">
+    <div><h3>Texto</h3><ul>
+      <li><span class="t" style="--c:var(--text-primary)">Aa</span><code>text/primary</code></li>
+      <li><span class="t" style="--c:var(--text-secondary)">Aa</span><code>text/secondary</code></li>
+      <li><span class="t" style="--c:var(--text-tertiary)">Aa</span><code>text/tertiary</code></li>
+      <li><span class="t" style="--c:var(--text-brand)">Aa</span><code>text/brand</code></li>
+      <li><span class="t" style="--c:var(--text-brand-accent)">Aa</span><code>text/brand-accent</code></li>
+      <li><span class="t" style="--c:var(--text-disabled)">Aa</span><code>text/disabled</code></li>
+    </ul></div>
+    <div><h3>Fondos y superficies</h3><ul>
+      <li><span class="s" style="--c:var(--background-page)"></span><code>background/page</code></li>
+      <li><span class="s" style="--c:var(--background-subtle)"></span><code>background/subtle</code></li>
+      <li><span class="s" style="--c:var(--surface-base)"></span><code>surface/base</code></li>
+      <li><span class="s" style="--c:var(--surface-raised)"></span><code>surface/raised</code></li>
+      <li><span class="s" style="--c:var(--surface-inverse)"></span><code>surface/inverse</code></li>
+      <li><span class="s" style="--c:var(--surface-ink)"></span><code>surface/ink</code></li>
+    </ul></div>
+    <div><h3>Marca y bordes</h3><ul>
+      <li><span class="s" style="--c:var(--brand-action)"></span><code>brand/action</code></li>
+      <li><span class="s" style="--c:var(--brand-subtle)"></span><code>brand/subtle</code></li>
+      <li><span class="s" style="--c:var(--brand-gold)"></span><code>brand/gold</code></li>
+      <li><span class="b" style="--c:var(--border-default)"></span><code>border/default</code></li>
+      <li><span class="b" style="--c:var(--border-strong)"></span><code>border/strong</code></li>
+      <li><span class="b" style="--c:var(--focus-ring-color)"></span><code>focus/ring-color</code></li>
+    </ul></div>
+    <div><h3>Estados</h3><div class="fb">
+      <div style="background:var(--feedback-success-bg);color:var(--feedback-success-text);border-color:var(--feedback-success-border)">Éxito · leaf</div>
+      <div style="background:var(--feedback-warning-bg);color:var(--feedback-warning-text);border-color:var(--feedback-warning-border)">Aviso · main</div>
+      <div style="background:var(--feedback-error-bg);color:var(--feedback-error-text);border-color:var(--feedback-error-border)">Error · accent</div>
+      <div style="background:var(--feedback-info-bg);color:var(--feedback-info-text);border-color:var(--feedback-info-border)">Info · info</div>
+    </div></div>
+  </div>
+</section>
+
+<section id="tipo">
+  <div class="sh"><h2>Tipografía</h2><p>Display en Anton, texto en Red Hat Display, editorial en Newsreader y código en IBM Plex Mono (<code>brand/font-*</code>). Tamaño, interlineado y tracking salen de <code>typography/styles/*</code>; la última columna dice qué familia se usa en esta muestra.</p></div>
+  <ol class="types"><li class="trow"><div class="tmeta"><code>display-hero</code><span>104 / 109.2 · -3.12 · display</span></div><p class="t-display t-display" style="font-size:var(--typography-styles-display-hero-size);line-height:var(--typography-styles-display-hero-line-height);letter-spacing:var(--typography-styles-display-hero-letter-spacing);">Divergentes</p></li>
+<li class="trow"><div class="tmeta"><code>display-xl</code><span>64 / 67.2 · -1.92 · display</span></div><p class="t-display t-display" style="font-size:var(--typography-styles-display-xl-size);line-height:var(--typography-styles-display-xl-line-height);letter-spacing:var(--typography-styles-display-xl-letter-spacing);">Periodismo de investigación</p></li>
+<li class="trow"><div class="tmeta"><code>display-lg</code><span>48 / 50.4 · -0.96 · display</span></div><p class="t-display t-display" style="font-size:var(--typography-styles-display-lg-size);line-height:var(--typography-styles-display-lg-line-height);letter-spacing:var(--typography-styles-display-lg-letter-spacing);">Lo que no se cuenta desde la capital</p></li>
+<li class="trow"><div class="tmeta"><code>display-md</code><span>40 / 50 · -0.8 · display</span></div><p class="t-display t-display" style="font-size:var(--typography-styles-display-md-size);line-height:var(--typography-styles-display-md-line-height);letter-spacing:var(--typography-styles-display-md-letter-spacing);">Datos, territorio y memoria</p></li>
+<li class="trow"><div class="tmeta"><code>display-sm</code><span>32 / 40 · -0.32 · display</span></div><p class="t-display t-display" style="font-size:var(--typography-styles-display-sm-size);line-height:var(--typography-styles-display-sm-line-height);letter-spacing:var(--typography-styles-display-sm-letter-spacing);">Una historia, muchas fuentes</p></li>
+<li class="trow"><div class="tmeta"><code>heading-h1</code><span>28 / 35 · -0.28 · body</span></div><p class="t-body t-heading" style="font-size:var(--typography-styles-heading-h1-size);line-height:var(--typography-styles-heading-h1-line-height);letter-spacing:var(--typography-styles-heading-h1-letter-spacing);">Quién decide sobre el agua del valle</p></li>
+<li class="trow"><div class="tmeta"><code>heading-h2</code><span>24 / 30 · body</span></div><p class="t-body t-heading" style="font-size:var(--typography-styles-heading-h2-size);line-height:var(--typography-styles-heading-h2-line-height);">Tres años de expedientes cerrados</p></li>
+<li class="trow"><div class="tmeta"><code>heading-h3</code><span>20 / 25 · body</span></div><p class="t-body t-heading" style="font-size:var(--typography-styles-heading-h3-size);line-height:var(--typography-styles-heading-h3-line-height);">Cómo hicimos esta investigación</p></li>
+<li class="trow"><div class="tmeta"><code>heading-h4</code><span>18 / 27 · body</span></div><p class="t-body t-heading" style="font-size:var(--typography-styles-heading-h4-size);line-height:var(--typography-styles-heading-h4-line-height);">Metodología y fuentes</p></li>
+<li class="trow"><div class="tmeta"><code>heading-h5</code><span>16 / 24 · body</span></div><p class="t-body t-heading" style="font-size:var(--typography-styles-heading-h5-size);line-height:var(--typography-styles-heading-h5-line-height);">Notas relacionadas</p></li>
+<li class="trow"><div class="tmeta"><code>body-lg</code><span>18 / 30.6 · editorial</span></div><p class="t-editorial t-body" style="font-size:var(--typography-styles-body-lg-size);line-height:var(--typography-styles-body-lg-line-height);">Texto de muestra para el cuerpo grande. Un párrafo de entrada tiene que leerse cómodo a esta medida, sin que el interlineado se abra de más.</p></li>
+<li class="trow"><div class="tmeta"><code>body-md</code><span>16 / 27.2 · body</span></div><p class="t-body t-body" style="font-size:var(--typography-styles-body-md-size);line-height:var(--typography-styles-body-md-line-height);">Texto de muestra para el cuerpo de las notas. Todo se compone alineado a la izquierda, con bandera derecha irregular.</p></li>
+<li class="trow"><div class="tmeta"><code>body-sm</code><span>14 / 21 · body</span></div><p class="t-body t-body" style="font-size:var(--typography-styles-body-sm-size);line-height:var(--typography-styles-body-sm-line-height);">Pie de foto: lugar, mes y año.</p></li>
+<li class="trow"><div class="tmeta"><code>body-xs</code><span>12 / 18 · body</span></div><p class="t-body t-body" style="font-size:var(--typography-styles-body-xs-size);line-height:var(--typography-styles-body-xs-line-height);">Fuente: elaboración propia con datos públicos.</p></li>
+<li class="trow"><div class="tmeta"><code>label-md</code><span>14 / 17.5 · 0.84 · body</span></div><p class="t-body t-label" style="font-size:var(--typography-styles-label-md-size);line-height:var(--typography-styles-label-md-line-height);letter-spacing:var(--typography-styles-label-md-letter-spacing);">Suscribite al boletín</p></li>
+<li class="trow"><div class="tmeta"><code>overline-lg</code><span>14 / 17.5 · 1.68 · body</span></div><p class="t-body t-overline" style="font-size:var(--typography-styles-overline-lg-size);line-height:var(--typography-styles-overline-lg-line-height);letter-spacing:var(--typography-styles-overline-lg-letter-spacing);">Investigación</p></li>
+<li class="trow"><div class="tmeta"><code>code-md</code><span>14 / 23.8 · mono</span></div><p class="t-mono t-code" style="font-size:var(--typography-styles-code-md-size);line-height:var(--typography-styles-code-md-line-height);">npm run verify</p></li></ol>
+</section>
+
+<section id="componentes">
+  <div class="sh"><h2>Componentes</h2><p>Cada propiedad es un token de la colección componentes.</p></div>
+  <h3>Botón</h3>
+  <div class="row">
+    <button class="btn primary" type="button">Leer la investigación</button>
+    <button class="btn secondary" type="button">Compartir</button>
+    <button class="btn ghost" type="button">Guardar</button>
+    <button class="btn danger" type="button">Eliminar</button>
+    <button class="btn primary" type="button" disabled>No disponible</button>
+    <button class="btn primary focus" type="button">Con foco</button>
+  </div>
+  <div class="row">
+    <button class="btn primary sm" type="button">Chico</button>
+    <button class="btn primary" type="button">Medio</button>
+    <button class="btn primary lg" type="button">Grande</button>
+  </div>
+  <h3>Campo</h3>
+  <div class="fields">
+    <div class="field"><label for="f-mail">Correo</label><input id="f-mail" type="email" placeholder="nombre@correo.com"></div>
+    <div class="field err"><label for="f-err">Correo</label><input id="f-err" type="email" value="nombre@"><small>Falta el dominio después de la @.</small></div>
+    <div class="field"><label for="f-off">País</label><input id="f-off" type="text" value="Nicaragua" disabled></div>
+  </div>
+  <h3>Etiqueta</h3>
+  <div class="pills">
+    <span class="pill" style="background:var(--pill-base-bg);color:var(--pill-base-text);border:1px solid var(--pill-base-border)">Análisis</span>
+    <span class="pill" style="background:var(--pill-brand-bg);color:var(--pill-brand-text)">Divergentes</span>
+    <span class="pill" style="background:var(--pill-success-bg);color:var(--pill-success-text)">Verificado</span>
+    <span class="pill" style="background:var(--pill-warning-bg);color:var(--pill-warning-text)">En revisión</span>
+    <span class="pill" style="background:var(--pill-error-bg);color:var(--pill-error-text)">Desmentido</span>
+  </div>
+  <h3>Tarjeta</h3>
+  <div class="cards">
+    <article class="card"><p class="kick">Investigación</p><h4>Título de una nota de muestra</h4><p>Quieta. Sombra, radio y padding salen del token.</p></article>
+    <article class="card int"><p class="kick">Especial</p><h4>Otra nota, <span class="highlight">con resaltado</span></h4><p>Interactiva. El hover cambia fondo y borde. El resaltado es <code>surface/highlight</code>.</p></article>
+  </div>
+  <h3>Banda tinta</h3>
+  <div class="ink-band"><b>surface/ink</b><span>Texto en <code style="color:inherit">text/on-ink</code> sobre el azul tinta.</span></div>
+</section>
+
+<section id="fundamentos">
+  <div class="sh"><h2>Espacio, radios y sombras</h2><p>Escala de la colección spacing; el ancho de la barra es el token.</p></div>
+  <div class="two">
+    <ul class="scale"><li><code>1</code><span class="bar" style="width:var(--spacing-1)"></span></li><li><code>2</code><span class="bar" style="width:var(--spacing-2)"></span></li><li><code>3</code><span class="bar" style="width:var(--spacing-3)"></span></li><li><code>4</code><span class="bar" style="width:var(--spacing-4)"></span></li><li><code>5</code><span class="bar" style="width:var(--spacing-5)"></span></li><li><code>6</code><span class="bar" style="width:var(--spacing-6)"></span></li><li><code>8</code><span class="bar" style="width:var(--spacing-8)"></span></li><li><code>10</code><span class="bar" style="width:var(--spacing-10)"></span></li><li><code>12</code><span class="bar" style="width:var(--spacing-12)"></span></li><li><code>16</code><span class="bar" style="width:var(--spacing-16)"></span></li><li><code>20</code><span class="bar" style="width:var(--spacing-20)"></span></li><li><code>24</code><span class="bar" style="width:var(--spacing-24)"></span></li></ul>
+    <div style="display:grid;gap:var(--spacing-8)"><ul class="radii"><li><span class="rbox" style="border-radius:var(--radius-none)"></span><code>none</code></li><li><span class="rbox" style="border-radius:var(--radius-xs)"></span><code>xs</code></li><li><span class="rbox" style="border-radius:var(--radius-sm)"></span><code>sm</code></li><li><span class="rbox" style="border-radius:var(--radius-md)"></span><code>md</code></li><li><span class="rbox" style="border-radius:var(--radius-lg)"></span><code>lg</code></li><li><span class="rbox" style="border-radius:var(--radius-xl)"></span><code>xl</code></li><li><span class="rbox" style="border-radius:var(--radius-2xl)"></span><code>2xl</code></li><li><span class="rbox" style="border-radius:var(--radius-full)"></span><code>full</code></li></ul>
+      <div class="shadows"><div style="box-shadow:var(--shadow-sm)">shadow/sm</div><div style="box-shadow:var(--shadow-md)">shadow/md</div><div style="box-shadow:var(--shadow-lg)">shadow/lg</div></div></div>
+  </div>
+</section>
+
+<section id="contraste">
+  <div class="sh"><h2>Contraste</h2><p>Los pares de <code>scripts/contrast-pairs.json</code>, medidos en los dos temas con WCAG 2; APCA Lc va como referencia. 66 pares medidos en los dos temas: 23 fallan y están en ALLOW (heredados de misitio-ui v0.1.6), 0 fallan sin excepción. Los que están en ALLOW no se corrigieron en v0.1.0 a propósito: esa versión replica la salida de misitio-ui sin cambios.</p></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Tema</th><th>Muestra</th><th>Primer plano</th><th>Fondo</th><th>WCAG</th><th>Lc</th><th>Uso</th><th>Estado</th></tr></thead>
+    <tbody><tr><td>Claro</td><td><span class="pair sm" style="--bg:#FAFAF9;--fg:#161615">Aa</span></td><td><code>--text-primary</code></td><td><code>--background-page</code></td><td class="num">17.34</td><td class="num">102</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#FFFFFF;--fg:#161615">Aa</span></td><td><code>--text-primary</code></td><td><code>--surface-base</code></td><td class="num">18.11</td><td class="num">105</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#FFFFFF;--fg:#161615">Aa</span></td><td><code>--text-primary</code></td><td><code>--surface-raised</code></td><td class="num">18.11</td><td class="num">105</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#FAFAF9;--fg:#595856">Aa</span></td><td><code>--text-secondary</code></td><td><code>--background-page</code></td><td class="num">6.80</td><td class="num">82</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#FFFFFF;--fg:#595856">Aa</span></td><td><code>--text-secondary</code></td><td><code>--surface-raised</code></td><td class="num">7.11</td><td class="num">85</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#F0EFEE;--fg:#595856">Aa</span></td><td><code>--text-secondary</code></td><td><code>--background-subtle</code></td><td class="num">6.19</td><td class="num">75</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#FAFAF9;--fg:#9E9C98">Aa</span></td><td><code>--text-tertiary</code></td><td><code>--background-page</code></td><td class="num">2.62</td><td class="num">50</td><td>texto</td><td><span class="state warn">falla · ALLOW</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#FFFFFF;--fg:#9E9C98">Aa</span></td><td><code>--text-tertiary</code></td><td><code>--surface-base</code></td><td class="num">2.74</td><td class="num">53</td><td>texto</td><td><span class="state warn">falla · ALLOW</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#FAFAF9;--fg:#FF003F">Aa</span></td><td><code>--text-brand</code></td><td><code>--background-page</code></td><td class="num">3.78</td><td class="num">61</td><td>texto</td><td><span class="state warn">falla · ALLOW</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#FAFAF9;--fg:#085E57">Aa</span></td><td><code>--text-brand-accent</code></td><td><code>--background-page</code></td><td class="num">7.31</td><td class="num">83</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#FAFAF9;--fg:#5EB2E3">Aa</span></td><td><code>--interaction-link-default</code></td><td><code>--background-page</code></td><td class="num">2.25</td><td class="num">43</td><td>texto</td><td><span class="state warn">falla · ALLOW</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#FAFAF9;--fg:#4F94BC">Aa</span></td><td><code>--interaction-link-hover</code></td><td><code>--background-page</code></td><td class="num">3.19</td><td class="num">58</td><td>texto</td><td><span class="state warn">falla · ALLOW</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#FAFAF9;--fg:#417696">Aa</span></td><td><code>--interaction-link-visited</code></td><td><code>--background-page</code></td><td class="num">4.72</td><td class="num">71</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#161615;--fg:#FFFFFF">Aa</span></td><td><code>--text-inverse</code></td><td><code>--surface-inverse</code></td><td class="num">18.11</td><td class="num">107</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#002A42;--fg:#FAFAF9">Aa</span></td><td><code>--text-on-ink</code></td><td><code>--surface-ink</code></td><td class="num">14.26</td><td class="num">101</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#FF003F;--fg:#FAFAF9">Aa</span></td><td><code>--surface-highlight-text</code></td><td><code>--surface-highlight-bg</code></td><td class="num">3.78</td><td class="num">66</td><td>texto</td><td><span class="state warn">falla · ALLOW</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#161615;--fg:#FAFAF9">Aa</span></td><td><code>--surface-accent-text</code></td><td><code>--surface-accent-bg</code></td><td class="num">17.34</td><td class="num">104</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#0FBDAF;--fg:#FFFFFF">Aa</span></td><td><code>--text-on-brand</code></td><td><code>--brand-action</code></td><td class="num">2.35</td><td class="num">51</td><td>texto en botón</td><td><span class="state warn">falla · ALLOW</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#0C9B8F;--fg:#FFFFFF">Aa</span></td><td><code>--text-on-brand</code></td><td><code>--brand-action-hover</code></td><td class="num">3.44</td><td class="num">67</td><td>texto en botón</td><td><span class="state warn">falla · ALLOW</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#0A7D73;--fg:#FFFFFF">Aa</span></td><td><code>--text-on-brand</code></td><td><code>--brand-action-press</code></td><td class="num">5.01</td><td class="num">80</td><td>texto en botón</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#0FBDAF;--fg:#161615">Aa</span></td><td><code>--button-primary-text</code></td><td><code>--button-primary-bg</code></td><td class="num">7.69</td><td class="num">57</td><td>texto en botón</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#0C9B8F;--fg:#161615">Aa</span></td><td><code>--button-primary-text</code></td><td><code>--button-primary-bg-hover</code></td><td class="num">5.26</td><td class="num">41</td><td>texto en botón</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#0A7D73;--fg:#161615">Aa</span></td><td><code>--button-primary-text</code></td><td><code>--button-primary-bg-press</code></td><td class="num">3.62</td><td class="num">29</td><td>texto en botón</td><td><span class="state warn">falla · ALLOW</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#FFFFFF;--fg:#161615">Aa</span></td><td><code>--button-secondary-text</code></td><td><code>--button-secondary-bg</code></td><td class="num">18.11</td><td class="num">105</td><td>texto en botón</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#FF003F;--fg:#FFFFFF">Aa</span></td><td><code>--button-danger-text</code></td><td><code>--button-danger-bg</code></td><td class="num">3.94</td><td class="num">69</td><td>texto en botón</td><td><span class="state warn">falla · ALLOW</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#F4FBFA;--fg:#0C9B8F">Aa</span></td><td><code>--brand-strong</code></td><td><code>--brand-subtle</code></td><td class="num">3.28</td><td class="num">58</td><td>pill de marca</td><td><span class="state warn">falla · ALLOW</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#F1FCE8;--fg:#1E6000">Aa</span></td><td><code>--feedback-success-text</code></td><td><code>--feedback-success-bg</code></td><td class="num">7.27</td><td class="num">82</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#F4FBFA;--fg:#0A7D73">Aa</span></td><td><code>--feedback-warning-text</code></td><td><code>--feedback-warning-bg</code></td><td class="num">4.77</td><td class="num">71</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#FCF3F5;--fg:#A8002A">Aa</span></td><td><code>--feedback-error-text</code></td><td><code>--feedback-error-bg</code></td><td class="num">7.14</td><td class="num">79</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#F7FBFE;--fg:#417696">Aa</span></td><td><code>--feedback-info-text</code></td><td><code>--feedback-info-bg</code></td><td class="num">4.74</td><td class="num">71</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#FAFAF9;--fg:#81C3E9">Aa</span></td><td><code>--focus-ring-color</code></td><td><code>--background-page</code></td><td class="num">1.84</td><td class="num">34</td><td>no texto</td><td><span class="state warn">falla · ALLOW</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#FAFAF9;--fg:#0FBDAF">Aa</span></td><td><code>--brand-action</code></td><td><code>--background-page</code></td><td class="num">2.25</td><td class="num">43</td><td>no texto</td><td><span class="state warn">falla · ALLOW</span></td></tr>
+<tr><td>Claro</td><td><span class="pair sm" style="--bg:#FFFFFF;--fg:#C2C0BD">Aa</span></td><td><code>--border-strong</code></td><td><code>--surface-base</code></td><td class="num">1.82</td><td class="num">34</td><td>borde de campo</td><td><span class="state warn">falla · ALLOW</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#0A0A09;--fg:#FAFAF9">Aa</span></td><td><code>--text-primary</code></td><td><code>--background-page</code></td><td class="num">18.96</td><td class="num">104</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#161615;--fg:#FAFAF9">Aa</span></td><td><code>--text-primary</code></td><td><code>--surface-base</code></td><td class="num">17.34</td><td class="num">104</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#262524;--fg:#FAFAF9">Aa</span></td><td><code>--text-primary</code></td><td><code>--surface-raised</code></td><td class="num">14.65</td><td class="num">102</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#0A0A09;--fg:#9E9C98">Aa</span></td><td><code>--text-secondary</code></td><td><code>--background-page</code></td><td class="num">7.23</td><td class="num">49</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#262524;--fg:#9E9C98">Aa</span></td><td><code>--text-secondary</code></td><td><code>--surface-raised</code></td><td class="num">5.58</td><td class="num">46</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#161615;--fg:#9E9C98">Aa</span></td><td><code>--text-secondary</code></td><td><code>--background-subtle</code></td><td class="num">6.61</td><td class="num">48</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#0A0A09;--fg:#595856">Aa</span></td><td><code>--text-tertiary</code></td><td><code>--background-page</code></td><td class="num">2.79</td><td class="num">17</td><td>texto</td><td><span class="state warn">falla · ALLOW</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#161615;--fg:#595856">Aa</span></td><td><code>--text-tertiary</code></td><td><code>--surface-base</code></td><td class="num">2.55</td><td class="num">16</td><td>texto</td><td><span class="state warn">falla · ALLOW</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#0A0A09;--fg:#FF003F">Aa</span></td><td><code>--text-brand</code></td><td><code>--background-page</code></td><td class="num">5.02</td><td class="num">38</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#0A0A09;--fg:#0FBDAF">Aa</span></td><td><code>--text-brand-accent</code></td><td><code>--background-page</code></td><td class="num">8.41</td><td class="num">56</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#0A0A09;--fg:#81C3E9">Aa</span></td><td><code>--interaction-link-default</code></td><td><code>--background-page</code></td><td class="num">10.30</td><td class="num">66</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#0A0A09;--fg:#A5D4EF">Aa</span></td><td><code>--interaction-link-hover</code></td><td><code>--background-page</code></td><td class="num">12.51</td><td class="num">76</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#0A0A09;--fg:#4F94BC">Aa</span></td><td><code>--interaction-link-visited</code></td><td><code>--background-page</code></td><td class="num">5.94</td><td class="num">41</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#FAFAF9;--fg:#161615">Aa</span></td><td><code>--text-inverse</code></td><td><code>--surface-inverse</code></td><td class="num">17.34</td><td class="num">102</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#002A42;--fg:#FAFAF9">Aa</span></td><td><code>--text-on-ink</code></td><td><code>--surface-ink</code></td><td class="num">14.26</td><td class="num">101</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#FF003F;--fg:#FAFAF9">Aa</span></td><td><code>--surface-highlight-text</code></td><td><code>--surface-highlight-bg</code></td><td class="num">3.78</td><td class="num">66</td><td>texto</td><td><span class="state warn">falla · ALLOW</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#262524;--fg:#FAFAF9">Aa</span></td><td><code>--surface-accent-text</code></td><td><code>--surface-accent-bg</code></td><td class="num">14.65</td><td class="num">102</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#0FBDAF;--fg:#FFFFFF">Aa</span></td><td><code>--text-on-brand</code></td><td><code>--brand-action</code></td><td class="num">2.35</td><td class="num">51</td><td>texto en botón</td><td><span class="state warn">falla · ALLOW</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#0C9B8F;--fg:#FFFFFF">Aa</span></td><td><code>--text-on-brand</code></td><td><code>--brand-action-hover</code></td><td class="num">3.44</td><td class="num">67</td><td>texto en botón</td><td><span class="state warn">falla · ALLOW</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#0A7D73;--fg:#FFFFFF">Aa</span></td><td><code>--text-on-brand</code></td><td><code>--brand-action-press</code></td><td class="num">5.01</td><td class="num">80</td><td>texto en botón</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#0FBDAF;--fg:#161615">Aa</span></td><td><code>--button-primary-text</code></td><td><code>--button-primary-bg</code></td><td class="num">7.69</td><td class="num">57</td><td>texto en botón</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#0C9B8F;--fg:#161615">Aa</span></td><td><code>--button-primary-text</code></td><td><code>--button-primary-bg-hover</code></td><td class="num">5.26</td><td class="num">41</td><td>texto en botón</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#0A7D73;--fg:#161615">Aa</span></td><td><code>--button-primary-text</code></td><td><code>--button-primary-bg-press</code></td><td class="num">3.62</td><td class="num">29</td><td>texto en botón</td><td><span class="state warn">falla · ALLOW</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#161615;--fg:#FAFAF9">Aa</span></td><td><code>--button-secondary-text</code></td><td><code>--button-secondary-bg</code></td><td class="num">17.34</td><td class="num">104</td><td>texto en botón</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#FF4573;--fg:#FAFAF9">Aa</span></td><td><code>--button-danger-text</code></td><td><code>--button-danger-bg</code></td><td class="num">3.17</td><td class="num">61</td><td>texto en botón</td><td><span class="state warn">falla · ALLOW</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#F4FBFA;--fg:#0C9B8F">Aa</span></td><td><code>--brand-strong</code></td><td><code>--brand-subtle</code></td><td class="num">3.28</td><td class="num">58</td><td>pill de marca</td><td><span class="state warn">falla · ALLOW</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#041100;--fg:#86E048">Aa</span></td><td><code>--feedback-success-text</code></td><td><code>--feedback-success-bg</code></td><td class="num">11.77</td><td class="num">74</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#033430;--fg:#87F5ED">Aa</span></td><td><code>--feedback-warning-text</code></td><td><code>--feedback-warning-bg</code></td><td class="num">10.61</td><td class="num">85</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#450011;--fg:#FF7D9D">Aa</span></td><td><code>--feedback-error-text</code></td><td><code>--feedback-error-bg</code></td><td class="num">6.88</td><td class="num">52</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#1F313C;--fg:#A5D4EF">Aa</span></td><td><code>--feedback-info-text</code></td><td><code>--feedback-info-bg</code></td><td class="num">8.49</td><td class="num">72</td><td>texto</td><td><span class="state ok">pasa 4.5</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#0A0A09;--fg:#81C3E9">Aa</span></td><td><code>--focus-ring-color</code></td><td><code>--background-page</code></td><td class="num">10.30</td><td class="num">66</td><td>no texto</td><td><span class="state ok">pasa 3</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#0A0A09;--fg:#0FBDAF">Aa</span></td><td><code>--brand-action</code></td><td><code>--background-page</code></td><td class="num">8.41</td><td class="num">56</td><td>no texto</td><td><span class="state ok">pasa 3</span></td></tr>
+<tr><td>Oscuro</td><td><span class="pair sm" style="--bg:#161615;--fg:#595856">Aa</span></td><td><code>--border-strong</code></td><td><code>--surface-base</code></td><td class="num">2.55</td><td class="num">16</td><td>borde de campo</td><td><span class="state warn">falla · ALLOW</span></td></tr></tbody>
+  </table></div>
+</section>
+</main>
+
+<footer class="end">
+  <p>Generado por <code>herramientas/sistema.py</code> desde <code>build/</code>. Para actualizarla: exportar desde Figma, <code>npm run verify</code> y <code>npm run sistema</code>.</p>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme');
+  var order = ['sistema', 'claro', 'oscuro'];
+  var map = { sistema: null, claro: 'light', oscuro: 'dark' };
+  var state = 'sistema';
+  try { state = localStorage.getItem('div-tema') || 'sistema'; } catch (e) {}
+  function apply() {
+    if (map[state]) root.setAttribute('data-theme', map[state]); else root.removeAttribute('data-theme');
+    btn.textContent = 'Tema: ' + state;
+  }
+  btn.addEventListener('click', function () {
+    state = order[(order.indexOf(state) + 1) % order.length];
+    try { localStorage.setItem('div-tema', state); } catch (e) {}
+    apply();
+  });
+  apply();
+})();
+</script>

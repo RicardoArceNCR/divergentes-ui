@@ -1,0 +1,9 @@
+__pycache__/
+node_modules
+
+# El paquete usa npm (package-lock.json). pnpm no.
+pnpm-lock.yaml
+pnpm-workspace.yaml
+
+# build/ NO se ignora a propósito: se versiona para que el sitio no tenga
+# que correr Python ni Style Dictionary para usar el paquete.

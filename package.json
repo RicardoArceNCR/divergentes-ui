@@ -1,0 +1,38 @@
+{
+  "name": "@divergentes/ui",
+  "version": "0.1.0",
+  "description": "Tokens de Divergentes. Figma exporta JSON; este paquete publica el CSS. El sitio no redefine la paleta.",
+  "license": "UNLICENSED",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RicardoArceNCR/divergentes-ui.git"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    "./tokens.css": "./build/tokens.css",
+    "./tokens-dark.css": "./build/tokens-dark.css",
+    "./theme-bridge.css": "./build/theme-bridge.css",
+    "./build/*": "./build/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "build",
+    "README.md"
+  ],
+  "scripts": {
+    "tokens": "python3 figma-to-sd.py",
+    "build": "style-dictionary build --config style-dictionary.config.js && style-dictionary build --config style-dictionary-dark.config.js && node -e \"require('fs').copyFileSync('theme-bridge.template.css', 'build/theme-bridge.css')\"",
+    "test": "node scripts/check-units.mjs && node scripts/check-ramps.mjs && node scripts/check-contrast.mjs",
+    "verify": "npm run tokens && npm run build && npm test",
+    "sistema": "python3 herramientas/sistema.py"
+  },
+  "devDependencies": {
+    "style-dictionary": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
