@@ -17,7 +17,7 @@ El sitio de Divergentes (`misitio`) fija un tag, nunca una rama:
 "@divergentes/ui": "github:RicardoArceNCR/divergentes-ui#v0.1.0"
 ```
 
-El repo es **privado**: el sitio necesita un token para instalarlo en Vercel y en CI. En `divergentes-web` es un PAT fine-grained (`divergentes-web-deps-read`, Contents: Read sobre este repo) guardado como `MISITIO_UI_READ_TOKEN` en Vercel (Production y Preview) y en los secrets de Actions; `scripts/git-auth-private-deps.sh` del sitio reescribe las URLs de GitHub a HTTPS con ese token antes de `pnpm install`. Sin el token, el install falla al clonar este repo. En local alcanza con tu SSH.
+El repo es **público**: no hay nada sensible, los tokens ya viajan en el CSS público del sitio. `divergentes-web` lo instala por HTTPS sin token; como pnpm resuelve `github:` como git y el clone puede salir por SSH (que en Vercel y CI falla sin llave), el sitio reescribe SSH→HTTPS antes de `pnpm install` (`git config --global url."https://github.com/".insteadOf "git@github.com:"`, en el `installCommand` de Vercel y en un paso de CI). En local alcanza con tu SSH o con HTTPS anónimo.
 
 El paquete no tiene script `prepare`, así que no corre nada al instalarse: llega `build/` tal cual.
 
