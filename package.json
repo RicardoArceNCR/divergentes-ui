@@ -1,6 +1,6 @@
 {
   "name": "@divergentes/ui",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Tokens de Divergentes. Figma exporta JSON; este paquete publica el CSS. El sitio no redefine la paleta.",
   "license": "UNLICENSED",
   "private": true,

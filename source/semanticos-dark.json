@@ -310,10 +310,6 @@
       "size": {
         "$type": "float",
         "$value": 32
-      },
-      "family": {
-        "$type": "string",
-        "$value": "Hanley Pro Block"
       }
     },
     "subheading": {
@@ -326,10 +322,6 @@
       "size": {
         "$type": "float",
         "$value": 16
-      },
-      "family": {
-        "$type": "string",
-        "$value": "Montserrat"
       }
     },
     "label": {

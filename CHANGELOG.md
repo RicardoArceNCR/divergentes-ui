@@ -8,6 +8,20 @@ cambia el CSS es **parche**.
 
 ## [Sin publicar]
 
+## [0.2.0] — 2026-10-17
+
+### Cambiado
+
+- `brand/font-display` pasa de `Anton` a `League Gothic`, la fuente que el sitio carga desde 2026-08-09 (ADR 0010 de divergentes-web). El sitio no lee este token para pintar: usa la variable de `next/font` (`--typography-family-display`), así que no cambia nada visual. Ojo: el cliente todavía no validó League Gothic; si elige otra, es el mismo cambio con otro valor.
+
+### Eliminado
+
+- `typography/heading/family` (Hanley Pro Block) y `typography/body/family` (Montserrat), en claro y oscuro. Eran restos de la paleta anterior y ningún componente del paquete ni el sitio los usaba. Por eso la versión es menor y no parche: un token borrado es incompatible.
+
+### Para el sitio
+
+- Subir la dependencia a `#v0.2.0`. Revisar que nada lea `--typography-heading-family` ni `--typography-body-family` (en divergentes-web no hay usos).
+
 ## [0.1.0] — 2026-10
 
 Primera versión de `@divergentes/ui`, sucesor de `@misitio/ui` (ADR 0001).

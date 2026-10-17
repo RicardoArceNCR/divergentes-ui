@@ -2241,23 +2241,6 @@ export default {
         },
         path: ["typography", "heading", "size"],
       },
-      family: {
-        $type: "string",
-        $value: "Hanley Pro Block",
-        filePath: "source/semanticos.json",
-        isSource: true,
-        original: {
-          $type: "string",
-          $value: "Hanley Pro Block",
-        },
-        name: "TypographyHeadingFamily",
-        attributes: {
-          category: "typography",
-          type: "heading",
-          item: "family",
-        },
-        path: ["typography", "heading", "family"],
-      },
     },
     subheading: {
       size: {
@@ -2295,23 +2278,6 @@ export default {
           item: "size",
         },
         path: ["typography", "body", "size"],
-      },
-      family: {
-        $type: "string",
-        $value: "Montserrat",
-        filePath: "source/semanticos.json",
-        isSource: true,
-        original: {
-          $type: "string",
-          $value: "Montserrat",
-        },
-        name: "TypographyBodyFamily",
-        attributes: {
-          category: "typography",
-          type: "body",
-          item: "family",
-        },
-        path: ["typography", "body", "family"],
       },
     },
     label: {
@@ -4493,12 +4459,12 @@ export default {
     },
     "font-display": {
       $type: "string",
-      $value: "Anton",
+      $value: "League Gothic",
       filePath: "source/semanticos.json",
       isSource: true,
       original: {
         $type: "string",
-        $value: "Anton",
+        $value: "League Gothic",
       },
       name: "BrandFontDisplay",
       attributes: {

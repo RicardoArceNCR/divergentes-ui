@@ -133,10 +133,8 @@
   --typography-tracking-wider: 0.1em;
   --typography-tracking-caps: 0.12em;
   --typography-heading-size: 32;
-  --typography-heading-family: Hanley Pro Block;
   --typography-subheading-size: 28;
   --typography-body-size: 16;
-  --typography-body-family: Montserrat;
   --typography-label-size: 14;
   --typography-caption-size: 12;
   --typography-hero-size: 104;
@@ -218,7 +216,7 @@
   --surface-inverse-subtle: rgba(255, 255, 255, 0.11);
   --text-inverse-secondary: rgba(255, 255, 255, 0.61);
   --border-inverse-subtle: rgba(255, 255, 255, 0.72);
-  --brand-font-display: Anton;
+  --brand-font-display: League Gothic;
   --brand-font-body: Red Hat Display;
   --brand-font-mono: IBM Plex Mono;
   --brand-font-editorial: Newsreader;

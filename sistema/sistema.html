@@ -1,7 +1,7 @@
 <title>Sistema Divergentes</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Red+Hat+Display:wght@400;500;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Red+Hat+Display:wght@400;500;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=IBM+Plex+Mono:wght@400&display=swap">
 <style>
 /* Layout: columna editorial alineada a la izquierda.
    Todos los colores salen de build/tokens.css y tokens-dark.css (incrustados abajo).
@@ -137,10 +137,8 @@
   --typography-tracking-wider: 0.1em;
   --typography-tracking-caps: 0.12em;
   --typography-heading-size: 32;
-  --typography-heading-family: Hanley Pro Block;
   --typography-subheading-size: 28;
   --typography-body-size: 16;
-  --typography-body-family: Montserrat;
   --typography-label-size: 14;
   --typography-caption-size: 12;
   --typography-hero-size: 104;
@@ -222,7 +220,7 @@
   --surface-inverse-subtle: rgba(255, 255, 255, 0.11);
   --text-inverse-secondary: rgba(255, 255, 255, 0.61);
   --border-inverse-subtle: rgba(255, 255, 255, 0.72);
-  --brand-font-display: Anton;
+  --brand-font-display: League Gothic;
   --brand-font-body: Red Hat Display;
   --brand-font-mono: IBM Plex Mono;
   --brand-font-editorial: Newsreader;
@@ -455,7 +453,7 @@
   --footer-link-hover: var(--text-primary);
   --footer-text: var(--text-secondary);
   --button-danger-bg-hover: var(--pill-error-text);
-  --f-display: var(--brand-font-display), "Anton", Impact, sans-serif;
+  --f-display: var(--brand-font-display), "League Gothic", Impact, sans-serif;
   --f-body: var(--brand-font-body), "Red Hat Display", system-ui, sans-serif;
   --f-editorial: var(--brand-font-editorial), "Newsreader", Georgia, serif;
   --f-mono: var(--brand-font-mono), "IBM Plex Mono", ui-monospace, Menlo, monospace;
@@ -464,10 +462,8 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
 --typography-heading-size: 32;
-  --typography-heading-family: Hanley Pro Block;
   --typography-subheading-size: 28;
   --typography-body-size: 16;
-  --typography-body-family: Montserrat;
   --typography-label-size: 14;
   --typography-caption-size: 12;
   --typography-hero-size: 104;
@@ -666,10 +662,8 @@
 }
 :root[data-theme="dark"] {
 --typography-heading-size: 32;
-  --typography-heading-family: Hanley Pro Block;
   --typography-subheading-size: 28;
   --typography-body-size: 16;
-  --typography-body-family: Montserrat;
   --typography-label-size: 14;
   --typography-caption-size: 12;
   --typography-hero-size: 104;
@@ -1049,7 +1043,7 @@ footer.end { padding-top: var(--spacing-10); border-top: 1px solid var(--divider
   <p class="over">Sistema · @divergentes/ui v0.1.0</p>
   <h1>Divergentes<span class="dot">.</span></h1>
   <p class="lede">Los tokens del sitio de Divergentes, tal como los publica el paquete. Todo lo que ves en esta página sale de las variables del Figma maestro, compiladas a <code>tokens.css</code>. Si algo se ve mal acá, se arregla en Figma, no en el sitio.</p>
-  <div class="facts"><span><b>9</b> rampas de color</span><span><b>448</b> tokens en :root</span><span><b>2</b> temas</span><span>Fuente: <code>@divergentes/ui</code></span></div>
+  <div class="facts"><span><b>9</b> rampas de color</span><span><b>446</b> tokens en :root</span><span><b>2</b> temas</span><span>Fuente: <code>@divergentes/ui</code></span></div>
 </div>
 
 <section id="marca">
@@ -1107,7 +1101,7 @@ footer.end { padding-top: var(--spacing-10); border-top: 1px solid var(--divider
 </section>
 
 <section id="tipo">
-  <div class="sh"><h2>Tipografía</h2><p>Display en Anton, texto en Red Hat Display, editorial en Newsreader y código en IBM Plex Mono (<code>brand/font-*</code>). Tamaño, interlineado y tracking salen de <code>typography/styles/*</code>; la última columna dice qué familia se usa en esta muestra.</p></div>
+  <div class="sh"><h2>Tipografía</h2><p>Display en League Gothic, texto en Red Hat Display, editorial en Newsreader y código en IBM Plex Mono (<code>brand/font-*</code>). Tamaño, interlineado y tracking salen de <code>typography/styles/*</code>; la última columna dice qué familia se usa en esta muestra.</p></div>
   <ol class="types"><li class="trow"><div class="tmeta"><code>display-hero</code><span>104 / 109.2 · -3.12 · display</span></div><p class="t-display t-display" style="font-size:var(--typography-styles-display-hero-size);line-height:var(--typography-styles-display-hero-line-height);letter-spacing:var(--typography-styles-display-hero-letter-spacing);">Divergentes</p></li>
 <li class="trow"><div class="tmeta"><code>display-xl</code><span>64 / 67.2 · -1.92 · display</span></div><p class="t-display t-display" style="font-size:var(--typography-styles-display-xl-size);line-height:var(--typography-styles-display-xl-line-height);letter-spacing:var(--typography-styles-display-xl-letter-spacing);">Periodismo de investigación</p></li>
 <li class="trow"><div class="tmeta"><code>display-lg</code><span>48 / 50.4 · -0.96 · display</span></div><p class="t-display t-display" style="font-size:var(--typography-styles-display-lg-size);line-height:var(--typography-styles-display-lg-line-height);letter-spacing:var(--typography-styles-display-lg-letter-spacing);">Lo que no se cuenta desde la capital</p></li>

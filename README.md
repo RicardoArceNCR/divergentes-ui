@@ -42,7 +42,7 @@ El sitio no redefine la paleta. Si hace falta un color que no existe, se agrega 
 
 `exports`: `tokens.css`, `tokens-dark.css`, `theme-bridge.css` y `build/*` (que incluye `theme-bridge-typography.generated.css` y `tokens.js`). `files` deja afuera `source/`, el pipeline y los chequeos: al sitio le llegan `build/`, este README y `package.json`.
 
-Rampas (`color/<familia>/<stop>`): `neutral`, `main` (teal, acción), `accent` (rojo de marca), `red`, `info` (cielo, enlaces), `leaf` (éxito), `gold`, `amarillo` e `ink`. Tipografía: Anton (display), Red Hat Display (texto), Newsreader (editorial) e IBM Plex Mono, en `brand/font-*`.
+Rampas (`color/<familia>/<stop>`): `neutral`, `main` (teal, acción), `accent` (rojo de marca), `red`, `info` (cielo, enlaces), `leaf` (éxito), `gold`, `amarillo` e `ink`. Tipografía: League Gothic (display), Red Hat Display (texto), Newsreader (editorial) e IBM Plex Mono, en `brand/font-*`.
 
 ## Controles
 
