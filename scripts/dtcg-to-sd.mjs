@@ -12,14 +12,20 @@
 // (formato de la Plugin API). Las reglas son las mismas; lo que cambió es la
 // lectura: el export nativo trae el nombre de la colección destino de cada
 // alias (com.figma.aliasData), así que ya no hace falta un mapa de IDs.
+//
+// source/dtcg/ es la fuente de verdad (ADR 0008 de estudio): un archivo DTCG
+// escrito a mano o por otra herramienta también sirve. Un alias sin
+// com.figma.aliasData ({a.b}) se busca primero en su colección y después en
+// las demás; si está en más de una, es un error y hay que desambiguarlo
+// desde Figma.
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const IN_DIR = join(ROOT, 'source', 'dtcg');
-const OUT_DIR = join(ROOT, 'source');
+const IN_DIR = process.env.DTCG_IN ?? join(ROOT, 'source', 'dtcg');
+const OUT_DIR = process.env.SD_OUT ?? join(ROOT, 'source');
 const config = JSON.parse(readFileSync(join(ROOT, 'tokens.config.json'), 'utf8')).figma;
 
 const COLLECTIONS = config.collections;
@@ -86,21 +92,48 @@ function* walk(node, path = []) {
 
 const isRef = (v) => typeof v === 'string' && /^\{[^{}]+\}$/.test(v);
 
-function parseCollection(name, data) {
-  const isDark = name.endsWith('-dark');
+// Índice de todas las colecciones: nombre → (ruta con puntos → [ruta, token]).
+const INDEX = new Map();
+
+function indexCollection(name, data) {
   const byRef = new Map();
   for (const [path, tok] of walk(data)) byRef.set(path.join('.'), [path, tok]);
+  INDEX.set(name, byRef);
+}
 
-  // Alias dentro de la misma colección: Figma los escribe como {a.b} sin el
-  // valor resuelto. Se sigue la cadena hasta un literal o un alias a otra
-  // colección (que sí trae el valor resuelto).
-  const resolve = (tok, seen = new Set()) => {
-    if (!isRef(tok.$value)) return tok.$value;
-    const key = tok.$value.slice(1, -1);
-    if (seen.has(key) || !byRef.has(key)) throw new Error(`alias sin destino en ${name}: ${tok.$value}`);
-    seen.add(key);
-    return resolve(byRef.get(key)[1], seen);
-  };
+// Dónde vive el destino de {a.b}, en el mismo orden en que arman los builds:
+// 1. su propia colección;
+// 2. desde una -dark, las otras -dark;
+// 3. las colecciones claras. Una clara nunca apunta a una -dark: el build
+//    claro no las carga.
+// Si en un paso aparece en más de una colección, es ambiguo.
+function locate(fromCollection, key) {
+  const dark = (c) => c.endsWith('-dark');
+  const others = [...INDEX.keys()].filter((c) => c !== fromCollection);
+  const tiers = [[fromCollection]];
+  if (dark(fromCollection)) tiers.push(others.filter(dark));
+  tiers.push(others.filter((c) => !dark(c)));
+  for (const tier of tiers) {
+    const found = tier.filter((c) => INDEX.get(c)?.has(key));
+    if (found.length === 1) return found[0];
+    if (found.length > 1) throw new Error(`{${key}} es ambiguo: existe en ${found.join(', ')}. Hacé el alias en Figma y exportá de nuevo.`);
+  }
+  throw new Error(`alias sin destino: {${key}}`);
+}
+
+// Valor final de un token: sigue los alias {a.b} hasta un literal o hasta un
+// alias de Figma a otra colección (que trae el valor resuelto).
+function resolve(collection, tok, seen = new Set()) {
+  if (!isRef(tok.$value) || tok.$extensions?.['com.figma.aliasData']) return tok.$value;
+  const key = tok.$value.slice(1, -1);
+  const target = locate(collection, key);
+  if (seen.has(`${target}:${key}`)) throw new Error(`alias circular: {${key}}`);
+  seen.add(`${target}:${key}`);
+  return resolve(target, INDEX.get(target).get(key)[1], seen);
+}
+
+function parseCollection(name, data) {
+  const isDark = name.endsWith('-dark');
 
   const result = {};
   for (const [path, tok] of walk(data)) {
@@ -109,12 +142,16 @@ function parseCollection(name, data) {
     const aliasData = tok.$extensions?.['com.figma.aliasData'];
     let alias = null;
     if (aliasData) alias = { name: aliasData.targetVariableName, collection: aliasData.targetVariableSetName };
-    else if (isRef(tok.$value)) alias = { name: byRef.get(tok.$value.slice(1, -1))?.[0].join('/'), collection: name };
+    else if (isRef(tok.$value)) {
+      const key = tok.$value.slice(1, -1);
+      const collection = locate(name, key);
+      alias = { name: INDEX.get(collection).get(key)[0].join('/'), collection };
+    }
 
     let token;
     if (alias) {
       if (!alias.name) throw new Error(`alias sin destino en ${name}: ${varName} → ${tok.$value}`);
-      const resolved = resolve(tok);
+      const resolved = resolve(name, tok);
       if (isDark && !inDarkBuild(alias.collection)) {
         if (!EXPECTED_DARK_CROSS.has(varName)) {
           console.log(`⚠  ${name}: "${varName}" → alias cruza a "${alias.collection}" ("${alias.name}"). ` +
@@ -250,12 +287,19 @@ if (missing.length === COLLECTIONS.length) {
 }
 if (missing.length) console.log(`⚠  Colecciones sin archivo (se omiten): ${missing.join(', ')}\n`);
 
+const data = {};
+for (const name of COLLECTIONS) {
+  if (missing.includes(name)) continue;
+  data[name] = JSON.parse(readFileSync(join(IN_DIR, `${name}.tokens.json`), 'utf8'));
+  indexCollection(name, data[name]);
+}
+
 let total = 0;
 for (const name of COLLECTIONS) {
   if (missing.includes(name)) continue;
   let tokens;
   try {
-    tokens = parseCollection(name, JSON.parse(readFileSync(join(IN_DIR, `${name}.tokens.json`), 'utf8')));
+    tokens = parseCollection(name, data[name]);
   } catch (e) {
     console.log(`✗ Error en ${name}.tokens.json: ${e.message}`);
     process.exit(1);
