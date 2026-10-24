@@ -3,6 +3,8 @@
  */
 
 :root {
+  --color-white: #ffffff;
+  --color-black: #000000;
   --color-neutral-50: #fafaf9;
   --color-neutral-100: #f0efee;
   --color-neutral-200: #dedddb;
@@ -14,8 +16,6 @@
   --color-neutral-800: #262524;
   --color-neutral-900: #161615;
   --color-neutral-950: #0a0a09;
-  --color-white: #ffffff;
-  --color-black: #000000;
   --color-accent-50: #fcf3f5;
   --color-accent-100: #f6e1e7;
   --color-accent-200: #f5bac8;
@@ -336,6 +336,9 @@
   --interaction-link-visited: var(--color-info-700);
   --divider-default: var(--color-neutral-200);
   --divider-strong: var(--color-neutral-300);
+  --button-font-weight: var(--typography-weight-extrabold);
+  --button-letter-spacing: var(--typography-tracking-caps);
+  --button-radius: var(--radius-full);
   --button-primary-text: var(--color-neutral-900);
   --button-danger-bg-press: var(--color-accent-800);
   --button-size-sm-height: var(--spacing-8);
@@ -344,17 +347,14 @@
   --button-size-md-padding-x: var(--spacing-4);
   --button-size-lg-height: var(--spacing-12);
   --button-size-lg-padding-x: var(--spacing-6);
-  --button-font-weight: var(--typography-weight-extrabold);
-  --button-letter-spacing: var(--typography-tracking-caps);
-  --button-radius: var(--radius-full);
   --input-radius: var(--radius-md);
   --input-padding-x: var(--spacing-4);
   --input-padding-y: var(--spacing-3);
   --card-radius: var(--radius-lg);
   --card-padding: var(--spacing-4);
   --card-shadow: var(--shadow-sm);
-  --nav-item-default: var(--text-inverse-secondary);
   --nav-height: var(--spacing-16);
+  --nav-item-default: var(--text-inverse-secondary);
   --modal-radius: var(--radius-xl);
   --modal-shadow: var(--shadow-lg);
   --pill-radius: var(--radius-full);
@@ -443,10 +443,10 @@
   --process-circle-bg: var(--background-strong);
   --footer-bg: var(--background-base);
   --footer-social-icon-bg: var(--surface-inverse);
+  --footer-text: var(--text-secondary);
+  --footer-link-hover: var(--text-primary);
   --footer-border: var(--border-default);
   --footer-heading: var(--text-primary);
   --footer-legal-text: var(--text-secondary);
-  --footer-link-hover: var(--text-primary);
-  --footer-text: var(--text-secondary);
   --button-danger-bg-hover: var(--pill-error-text);
 }

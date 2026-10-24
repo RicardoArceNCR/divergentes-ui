@@ -23,7 +23,7 @@
     "README.md"
   ],
   "scripts": {
-    "tokens": "python3 figma-to-sd.py",
+    "tokens": "node scripts/dtcg-to-sd.mjs",
     "build": "style-dictionary build --config style-dictionary.config.js && style-dictionary build --config style-dictionary-dark.config.js && node -e \"require('fs').copyFileSync('theme-bridge.template.css', 'build/theme-bridge.css')\"",
     "test": "node scripts/check-units.mjs && node scripts/check-ramps.mjs && node scripts/check-contrast.mjs",
     "verify": "npm run tokens && npm run build && npm test",

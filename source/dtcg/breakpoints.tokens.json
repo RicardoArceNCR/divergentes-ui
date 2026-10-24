@@ -1,0 +1,62 @@
+{
+  "breakpoint": {
+    "sm": {
+      "$type": "number",
+      "$value": 640,
+      "$description": "640px",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:4001:13",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "md": {
+      "$type": "number",
+      "$value": 768,
+      "$description": "768px",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:4001:14",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "lg": {
+      "$type": "number",
+      "$value": 1024,
+      "$description": "1024px",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:4001:15",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "xl": {
+      "$type": "number",
+      "$value": 1280,
+      "$description": "1280px",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:4001:16",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "2xl": {
+      "$type": "number",
+      "$value": 1536,
+      "$description": "1536px",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:4001:17",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Mode 1"
+  }
+}

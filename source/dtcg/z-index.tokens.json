@@ -1,0 +1,65 @@
+{
+  "dropdown": {
+    "$type": "number",
+    "$value": 1000,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:19040:42",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    }
+  },
+  "sticky": {
+    "$type": "number",
+    "$value": 1020,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:19040:43",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    }
+  },
+  "overlay": {
+    "$type": "number",
+    "$value": 1030,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:19040:44",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    }
+  },
+  "modal": {
+    "$type": "number",
+    "$value": 1040,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:19040:45",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    }
+  },
+  "toast": {
+    "$type": "number",
+    "$value": 1050,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:19040:46",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    }
+  },
+  "tooltip": {
+    "$type": "number",
+    "$value": 1060,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:19040:47",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ]
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Mode 1"
+  }
+}

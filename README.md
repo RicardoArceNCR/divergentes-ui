@@ -1,9 +1,9 @@
 # @divergentes/ui
 
-Tokens de Divergentes. La fuente que se edita es el Figma maestro de Divergentes, el mismo que alimentaba `@misitio/ui`. `source/raw/` es el export (plugin Export/Import Variables de Jan Toman). El CSS de `build/` se genera y se versiona para que el sitio no corra Python ni Style Dictionary.
+Tokens de Divergentes. La fuente que se edita es el Figma maestro de Divergentes, el mismo que alimentaba `@misitio/ui`. `source/dtcg/` es el export nativo de Figma (DTCG), uno por colección (ADR 0003). El CSS de `build/` se genera y se versiona para que el sitio no corra Python ni Style Dictionary.
 
 ```bash
-npm run verify                       # figma-to-sd + Style Dictionary + chequeos
+npm run verify                       # dtcg-to-sd + Style Dictionary + chequeos
 npm run sistema                      # regenera sistema/sistema.html
 ```
 
@@ -54,11 +54,11 @@ Rampas (`color/<familia>/<stop>`): `neutral`, `main` (teal, acción), `accent` (
 
 Cada chequeo tiene una lista `ALLOW`, la única vía para que algo en falla pase, con motivo escrito. Hoy tiene 3 entradas en rampas y 23 en contraste, todas heredadas de `misitio-ui@v0.1.6`: son el backlog para Figma, no permisos (ADR 0002).
 
-CI (`.github/workflows/verify.yml`): `npm run verify`, `build/` y `source/*.json` al día con `source/raw`, y tag igual a la versión. Decisiones en `docs/decisions/`, cambios por versión en `CHANGELOG.md`.
+CI (`.github/workflows/verify.yml`): `npm run verify`, `build/` y `source/*.json` al día con `source/dtcg`, y tag igual a la versión. Decisiones en `docs/decisions/`, cambios por versión en `CHANGELOG.md`.
 
 ## Publicar una versión
 
-1. Exportá desde Figma las colecciones que cambiaron a `source/raw/`.
+1. En Figma, en Variables, clic derecho en cada colección que cambió → **Export modes**. Guardá el JSON en `source/dtcg/` con el nombre de la colección (`primitivos.tokens.json`), reemplazando el anterior: Figma lo nombra por el modo (`Mode 1.tokens.json`) y ese nombre no sirve.
 2. `npm run verify` y `npm run sistema`.
 3. Anotá el cambio en `CHANGELOG.md` y subí `version` en `package.json`.
 4. Commit, `git tag vX.Y.Z`, push con tags. CI valida que el tag coincida.

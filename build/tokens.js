@@ -4,6 +4,38 @@
 
 export default {
   color: {
+    white: {
+      $type: "color",
+      $value: "#ffffff",
+      filePath: "source/primitivos.json",
+      isSource: true,
+      original: {
+        $type: "color",
+        $value: "#ffffff",
+      },
+      name: "ColorWhite",
+      attributes: {
+        category: "color",
+        type: "white",
+      },
+      path: ["color", "white"],
+    },
+    black: {
+      $type: "color",
+      $value: "#000000",
+      filePath: "source/primitivos.json",
+      isSource: true,
+      original: {
+        $type: "color",
+        $value: "#000000",
+      },
+      name: "ColorBlack",
+      attributes: {
+        category: "color",
+        type: "black",
+      },
+      path: ["color", "black"],
+    },
     neutral: {
       50: {
         $type: "color",
@@ -192,38 +224,6 @@ export default {
         },
         path: ["color", "neutral", "950"],
       },
-    },
-    white: {
-      $type: "color",
-      $value: "#ffffff",
-      filePath: "source/primitivos.json",
-      isSource: true,
-      original: {
-        $type: "color",
-        $value: "#ffffff",
-      },
-      name: "ColorWhite",
-      attributes: {
-        category: "color",
-        type: "white",
-      },
-      path: ["color", "white"],
-    },
-    black: {
-      $type: "color",
-      $value: "#000000",
-      filePath: "source/primitivos.json",
-      isSource: true,
-      original: {
-        $type: "color",
-        $value: "#000000",
-      },
-      name: "ColorBlack",
-      attributes: {
-        category: "color",
-        type: "black",
-      },
-      path: ["color", "black"],
     },
     accent: {
       50: {
@@ -3939,22 +3939,6 @@ export default {
       },
       path: ["surface", "inverse"],
     },
-    "inverse-subtle": {
-      $type: "string",
-      $value: "rgba(255, 255, 255, 0.11)",
-      filePath: "source/semanticos.json",
-      isSource: true,
-      original: {
-        $type: "string",
-        $value: "rgba(255, 255, 255, 0.11)",
-      },
-      name: "SurfaceInverseSubtle",
-      attributes: {
-        category: "surface",
-        type: "inverse-subtle",
-      },
-      path: ["surface", "inverse-subtle"],
-    },
     "accent-bg": {
       $type: "color",
       $value: "#161615",
@@ -4002,6 +3986,22 @@ export default {
         type: "accent-border",
       },
       path: ["surface", "accent-border"],
+    },
+    "inverse-subtle": {
+      $type: "string",
+      $value: "rgba(255, 255, 255, 0.11)",
+      filePath: "source/semanticos.json",
+      isSource: true,
+      original: {
+        $type: "string",
+        $value: "rgba(255, 255, 255, 0.11)",
+      },
+      name: "SurfaceInverseSubtle",
+      attributes: {
+        category: "surface",
+        type: "inverse-subtle",
+      },
+      path: ["surface", "inverse-subtle"],
     },
     ink: {
       $type: "color",
@@ -4133,6 +4133,22 @@ export default {
       },
       path: ["text", "inverse"],
     },
+    "inverse-secondary": {
+      $type: "string",
+      $value: "rgba(255, 255, 255, 0.61)",
+      filePath: "source/semanticos.json",
+      isSource: true,
+      original: {
+        $type: "string",
+        $value: "rgba(255, 255, 255, 0.61)",
+      },
+      name: "TextInverseSecondary",
+      attributes: {
+        category: "text",
+        type: "inverse-secondary",
+      },
+      path: ["text", "inverse-secondary"],
+    },
     brand: {
       $type: "color",
       $value: "#ff003f",
@@ -4164,22 +4180,6 @@ export default {
         type: "on-brand",
       },
       path: ["text", "on-brand"],
-    },
-    "inverse-secondary": {
-      $type: "string",
-      $value: "rgba(255, 255, 255, 0.61)",
-      filePath: "source/semanticos.json",
-      isSource: true,
-      original: {
-        $type: "string",
-        $value: "rgba(255, 255, 255, 0.61)",
-      },
-      name: "TextInverseSecondary",
-      attributes: {
-        category: "text",
-        type: "inverse-secondary",
-      },
-      path: ["text", "inverse-secondary"],
     },
     "brand-accent": {
       $type: "color",
@@ -5010,6 +5010,54 @@ export default {
     },
   },
   button: {
+    "font-weight": {
+      $type: "float",
+      $value: 800,
+      filePath: "source/componentes.json",
+      isSource: true,
+      original: {
+        $type: "float",
+        $value: "{typography.weight.extrabold}",
+      },
+      name: "ButtonFontWeight",
+      attributes: {
+        category: "button",
+        type: "font-weight",
+      },
+      path: ["button", "font-weight"],
+    },
+    "letter-spacing": {
+      $type: "float",
+      $value: "0.12em",
+      filePath: "source/componentes.json",
+      isSource: true,
+      original: {
+        $type: "float",
+        $value: "{typography.tracking.caps}",
+      },
+      name: "ButtonLetterSpacing",
+      attributes: {
+        category: "button",
+        type: "letter-spacing",
+      },
+      path: ["button", "letter-spacing"],
+    },
+    radius: {
+      $type: "dimension",
+      $value: "9999px",
+      filePath: "source/componentes.json",
+      isSource: true,
+      original: {
+        $type: "dimension",
+        $value: "{radius.full}",
+      },
+      name: "ButtonRadius",
+      attributes: {
+        category: "button",
+        type: "radius",
+      },
+      path: ["button", "radius"],
+    },
     primary: {
       bg: {
         $type: "color",
@@ -5527,54 +5575,6 @@ export default {
         },
       },
     },
-    "font-weight": {
-      $type: "float",
-      $value: 800,
-      filePath: "source/componentes.json",
-      isSource: true,
-      original: {
-        $type: "float",
-        $value: "{typography.weight.extrabold}",
-      },
-      name: "ButtonFontWeight",
-      attributes: {
-        category: "button",
-        type: "font-weight",
-      },
-      path: ["button", "font-weight"],
-    },
-    "letter-spacing": {
-      $type: "float",
-      $value: "0.12em",
-      filePath: "source/componentes.json",
-      isSource: true,
-      original: {
-        $type: "float",
-        $value: "{typography.tracking.caps}",
-      },
-      name: "ButtonLetterSpacing",
-      attributes: {
-        category: "button",
-        type: "letter-spacing",
-      },
-      path: ["button", "letter-spacing"],
-    },
-    radius: {
-      $type: "dimension",
-      $value: "9999px",
-      filePath: "source/componentes.json",
-      isSource: true,
-      original: {
-        $type: "dimension",
-        $value: "{radius.full}",
-      },
-      name: "ButtonRadius",
-      attributes: {
-        category: "button",
-        type: "radius",
-      },
-      path: ["button", "radius"],
-    },
   },
   input: {
     bg: {
@@ -5737,54 +5737,6 @@ export default {
       },
       path: ["input", "label"],
     },
-    radius: {
-      $type: "dimension",
-      $value: "8px",
-      filePath: "source/componentes.json",
-      isSource: true,
-      original: {
-        $type: "dimension",
-        $value: "{radius.md}",
-      },
-      name: "InputRadius",
-      attributes: {
-        category: "input",
-        type: "radius",
-      },
-      path: ["input", "radius"],
-    },
-    "padding-x": {
-      $type: "dimension",
-      $value: "16px",
-      filePath: "source/componentes.json",
-      isSource: true,
-      original: {
-        $type: "dimension",
-        $value: "{spacing.4}",
-      },
-      name: "InputPaddingX",
-      attributes: {
-        category: "input",
-        type: "padding-x",
-      },
-      path: ["input", "padding-x"],
-    },
-    "padding-y": {
-      $type: "dimension",
-      $value: "12px",
-      filePath: "source/componentes.json",
-      isSource: true,
-      original: {
-        $type: "dimension",
-        $value: "{spacing.3}",
-      },
-      name: "InputPaddingY",
-      attributes: {
-        category: "input",
-        type: "padding-y",
-      },
-      path: ["input", "padding-y"],
-    },
     "border-hover": {
       $type: "color",
       $value: "#c2c0bd",
@@ -5832,6 +5784,54 @@ export default {
         type: "text-disabled",
       },
       path: ["input", "text-disabled"],
+    },
+    radius: {
+      $type: "dimension",
+      $value: "8px",
+      filePath: "source/componentes.json",
+      isSource: true,
+      original: {
+        $type: "dimension",
+        $value: "{radius.md}",
+      },
+      name: "InputRadius",
+      attributes: {
+        category: "input",
+        type: "radius",
+      },
+      path: ["input", "radius"],
+    },
+    "padding-x": {
+      $type: "dimension",
+      $value: "16px",
+      filePath: "source/componentes.json",
+      isSource: true,
+      original: {
+        $type: "dimension",
+        $value: "{spacing.4}",
+      },
+      name: "InputPaddingX",
+      attributes: {
+        category: "input",
+        type: "padding-x",
+      },
+      path: ["input", "padding-x"],
+    },
+    "padding-y": {
+      $type: "dimension",
+      $value: "12px",
+      filePath: "source/componentes.json",
+      isSource: true,
+      original: {
+        $type: "dimension",
+        $value: "{spacing.3}",
+      },
+      name: "InputPaddingY",
+      attributes: {
+        category: "input",
+        type: "padding-y",
+      },
+      path: ["input", "padding-y"],
     },
   },
   card: {
@@ -5883,38 +5883,6 @@ export default {
       },
       path: ["card", "text"],
     },
-    radius: {
-      $type: "dimension",
-      $value: "12px",
-      filePath: "source/componentes.json",
-      isSource: true,
-      original: {
-        $type: "dimension",
-        $value: "{radius.lg}",
-      },
-      name: "CardRadius",
-      attributes: {
-        category: "card",
-        type: "radius",
-      },
-      path: ["card", "radius"],
-    },
-    padding: {
-      $type: "dimension",
-      $value: "16px",
-      filePath: "source/componentes.json",
-      isSource: true,
-      original: {
-        $type: "dimension",
-        $value: "{spacing.4}",
-      },
-      name: "CardPadding",
-      attributes: {
-        category: "card",
-        type: "padding",
-      },
-      path: ["card", "padding"],
-    },
     "bg-hover": {
       $type: "color",
       $value: "#fafaf9",
@@ -5946,6 +5914,38 @@ export default {
         type: "border-hover",
       },
       path: ["card", "border-hover"],
+    },
+    radius: {
+      $type: "dimension",
+      $value: "12px",
+      filePath: "source/componentes.json",
+      isSource: true,
+      original: {
+        $type: "dimension",
+        $value: "{radius.lg}",
+      },
+      name: "CardRadius",
+      attributes: {
+        category: "card",
+        type: "radius",
+      },
+      path: ["card", "radius"],
+    },
+    padding: {
+      $type: "dimension",
+      $value: "16px",
+      filePath: "source/componentes.json",
+      isSource: true,
+      original: {
+        $type: "dimension",
+        $value: "{spacing.4}",
+      },
+      name: "CardPadding",
+      attributes: {
+        category: "card",
+        type: "padding",
+      },
+      path: ["card", "padding"],
     },
     shadow: {
       $type: "string",
@@ -5997,6 +5997,22 @@ export default {
         type: "border",
       },
       path: ["nav", "border"],
+    },
+    height: {
+      $type: "dimension",
+      $value: "64px",
+      filePath: "source/componentes.json",
+      isSource: true,
+      original: {
+        $type: "dimension",
+        $value: "{spacing.16}",
+      },
+      name: "NavHeight",
+      attributes: {
+        category: "nav",
+        type: "height",
+      },
+      path: ["nav", "height"],
     },
     item: {
       default: {
@@ -6050,22 +6066,6 @@ export default {
         },
         path: ["nav", "item", "hover"],
       },
-    },
-    height: {
-      $type: "dimension",
-      $value: "64px",
-      filePath: "source/componentes.json",
-      isSource: true,
-      original: {
-        $type: "dimension",
-        $value: "{spacing.16}",
-      },
-      name: "NavHeight",
-      attributes: {
-        category: "nav",
-        type: "height",
-      },
-      path: ["nav", "height"],
     },
     logo: {
       text: {
@@ -6204,6 +6204,22 @@ export default {
     },
   },
   pill: {
+    radius: {
+      $type: "dimension",
+      $value: "9999px",
+      filePath: "source/componentes.json",
+      isSource: true,
+      original: {
+        $type: "dimension",
+        $value: "{radius.full}",
+      },
+      name: "PillRadius",
+      attributes: {
+        category: "pill",
+        type: "radius",
+      },
+      path: ["pill", "radius"],
+    },
     base: {
       bg: {
         $type: "color",
@@ -6400,22 +6416,6 @@ export default {
         },
         path: ["pill", "error", "text"],
       },
-    },
-    radius: {
-      $type: "dimension",
-      $value: "9999px",
-      filePath: "source/componentes.json",
-      isSource: true,
-      original: {
-        $type: "dimension",
-        $value: "{radius.full}",
-      },
-      name: "PillRadius",
-      attributes: {
-        category: "pill",
-        type: "radius",
-      },
-      path: ["pill", "radius"],
     },
     sm: {
       "padding-x": {
@@ -6899,6 +6899,38 @@ export default {
       },
       path: ["footer", "social-icon-bg"],
     },
+    text: {
+      $type: "color",
+      $value: "#595856",
+      filePath: "source/componentes.json",
+      isSource: true,
+      original: {
+        $type: "color",
+        $value: "{text.secondary}",
+      },
+      name: "FooterText",
+      attributes: {
+        category: "footer",
+        type: "text",
+      },
+      path: ["footer", "text"],
+    },
+    "link-hover": {
+      $type: "color",
+      $value: "#161615",
+      filePath: "source/componentes.json",
+      isSource: true,
+      original: {
+        $type: "color",
+        $value: "{text.primary}",
+      },
+      name: "FooterLinkHover",
+      attributes: {
+        category: "footer",
+        type: "link-hover",
+      },
+      path: ["footer", "link-hover"],
+    },
     border: {
       $type: "color",
       $value: "#dedddb",
@@ -6946,38 +6978,6 @@ export default {
         type: "legal-text",
       },
       path: ["footer", "legal-text"],
-    },
-    "link-hover": {
-      $type: "color",
-      $value: "#161615",
-      filePath: "source/componentes.json",
-      isSource: true,
-      original: {
-        $type: "color",
-        $value: "{text.primary}",
-      },
-      name: "FooterLinkHover",
-      attributes: {
-        category: "footer",
-        type: "link-hover",
-      },
-      path: ["footer", "link-hover"],
-    },
-    text: {
-      $type: "color",
-      $value: "#595856",
-      filePath: "source/componentes.json",
-      isSource: true,
-      original: {
-        $type: "color",
-        $value: "{text.secondary}",
-      },
-      name: "FooterText",
-      attributes: {
-        category: "footer",
-        type: "text",
-      },
-      path: ["footer", "text"],
     },
   },
   spacing: {

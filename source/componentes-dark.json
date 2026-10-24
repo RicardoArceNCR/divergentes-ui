@@ -1,5 +1,17 @@
 {
   "button": {
+    "radius": {
+      "$type": "dimension",
+      "$value": "9999px"
+    },
+    "letter-spacing": {
+      "$type": "float",
+      "$value": "{typography.tracking.caps}"
+    },
+    "font-weight": {
+      "$type": "float",
+      "$value": "{typography.weight.extrabold}"
+    },
     "primary": {
       "bg": {
         "$type": "color",
@@ -133,18 +145,6 @@
           "$value": "24px"
         }
       }
-    },
-    "radius": {
-      "$type": "dimension",
-      "$value": "9999px"
-    },
-    "letter-spacing": {
-      "$type": "float",
-      "$value": "{typography.tracking.caps}"
-    },
-    "font-weight": {
-      "$type": "float",
-      "$value": "{typography.weight.extrabold}"
     }
   },
   "input": {
@@ -188,18 +188,6 @@
       "$type": "color",
       "$value": "{text.secondary}"
     },
-    "radius": {
-      "$type": "dimension",
-      "$value": "8px"
-    },
-    "padding-x": {
-      "$type": "dimension",
-      "$value": "16px"
-    },
-    "padding-y": {
-      "$type": "dimension",
-      "$value": "12px"
-    },
     "border-hover": {
       "$type": "color",
       "$value": "{border.strong}"
@@ -211,6 +199,18 @@
     "text-disabled": {
       "$type": "color",
       "$value": "{text.disabled}"
+    },
+    "radius": {
+      "$type": "dimension",
+      "$value": "8px"
+    },
+    "padding-x": {
+      "$type": "dimension",
+      "$value": "16px"
+    },
+    "padding-y": {
+      "$type": "dimension",
+      "$value": "12px"
     }
   },
   "card": {
@@ -226,14 +226,6 @@
       "$type": "color",
       "$value": "{text.primary}"
     },
-    "radius": {
-      "$type": "dimension",
-      "$value": "12px"
-    },
-    "padding": {
-      "$type": "dimension",
-      "$value": "24px"
-    },
     "bg-hover": {
       "$type": "color",
       "$value": "{surface.subtle}"
@@ -241,6 +233,14 @@
     "border-hover": {
       "$type": "color",
       "$value": "{border.strong}"
+    },
+    "radius": {
+      "$type": "dimension",
+      "$value": "12px"
+    },
+    "padding": {
+      "$type": "dimension",
+      "$value": "24px"
     },
     "shadow": {
       "$type": "string",
@@ -256,6 +256,10 @@
       "$type": "color",
       "$value": "{border.default}"
     },
+    "height": {
+      "$type": "dimension",
+      "$value": "64px"
+    },
     "item": {
       "default": {
         "$type": "color",
@@ -269,10 +273,6 @@
         "$type": "color",
         "$value": "{text.primary}"
       }
-    },
-    "height": {
-      "$type": "dimension",
-      "$value": "64px"
     },
     "logo": {
       "text": {
@@ -312,6 +312,10 @@
     }
   },
   "pill": {
+    "radius": {
+      "$type": "dimension",
+      "$value": "9999px"
+    },
     "base": {
       "bg": {
         "$type": "color",
@@ -365,10 +369,6 @@
         "$type": "color",
         "$value": "{feedback.error.text}"
       }
-    },
-    "radius": {
-      "$type": "dimension",
-      "$value": "9999px"
     },
     "sm": {
       "padding-x": {

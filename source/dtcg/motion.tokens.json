@@ -1,0 +1,114 @@
+{
+  "motion": {
+    "duration": {
+      "instant": {
+        "$type": "number",
+        "$value": 50,
+        "$description": "Feedback inmediato",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4001:3",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "fast": {
+        "$type": "number",
+        "$value": 100,
+        "$description": "Microinteracciones",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4001:4",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "normal": {
+        "$type": "number",
+        "$value": 150,
+        "$description": "Transiciones UI estándar",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4001:5",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "slow": {
+        "$type": "number",
+        "$value": 250,
+        "$description": "Modales y panels",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4001:6",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "slower": {
+        "$type": "number",
+        "$value": 400,
+        "$description": "Animaciones de entrada hero",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4001:7",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      }
+    },
+    "easing": {
+      "standard": {
+        "$type": "string",
+        "$value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "$description": "Movimiento general",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4001:8",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.type": "string"
+        }
+      },
+      "enter": {
+        "$type": "string",
+        "$value": "cubic-bezier(0, 0, 0.2, 1)",
+        "$description": "Elementos que entran",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4001:9",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.type": "string"
+        }
+      },
+      "exit": {
+        "$type": "string",
+        "$value": "cubic-bezier(0.4, 0, 1, 1)",
+        "$description": "Elementos que salen",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4001:10",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.type": "string"
+        }
+      },
+      "spring": {
+        "$type": "string",
+        "$value": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "$description": "Rebote sutil",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4001:11",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.type": "string"
+        }
+      }
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Mode 1"
+  }
+}

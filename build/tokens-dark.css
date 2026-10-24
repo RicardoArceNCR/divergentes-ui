@@ -15,6 +15,7 @@
   --overlay-modal: rgba(0, 0, 0, 0.7);
   --overlay-card: rgba(0, 0, 0, 0.24);
   --overlay-hero: rgba(0, 0, 0, 0.62);
+  --button-radius: 9999px;
   --button-ghost-border: rgba(0, 0, 0, 0);
   --button-size-sm-height: 32px;
   --button-size-sm-padding-x: 12px;
@@ -22,7 +23,6 @@
   --button-size-md-padding-x: 16px;
   --button-size-lg-height: 48px;
   --button-size-lg-padding-x: 24px;
-  --button-radius: 9999px;
   --input-radius: 8px;
   --input-padding-x: 16px;
   --input-padding-y: 12px;
@@ -106,10 +106,10 @@
   --interaction-link-visited: var(--color-info-600);
   --divider-default: var(--color-neutral-800);
   --divider-strong: var(--color-neutral-600);
-  --button-primary-text: var(--color-neutral-900);
-  --button-danger-bg-press: var(--color-accent-800);
   --button-letter-spacing: var(--typography-tracking-caps);
   --button-font-weight: var(--typography-weight-extrabold);
+  --button-primary-text: var(--color-neutral-900);
+  --button-danger-bg-press: var(--color-accent-800);
   --card-shadow: var(--shadow-sm-dark);
   --nav-bg: var(--color-neutral-950);
   --modal-shadow: var(--shadow-lg-dark);

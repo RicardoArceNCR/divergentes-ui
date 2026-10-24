@@ -8,6 +8,10 @@ cambia el CSS es **parche**.
 
 ## [Sin publicar]
 
+### Cambiado
+
+- La fuente pasa a ser el export nativo de Figma (`source/dtcg/`, DTCG) y la conversión a `scripts/dtcg-to-sd.mjs`, que reemplaza a `figma-to-sd.py` y al plugin de Jan Toman (ADR 0003). Los tokens y sus valores no cambian: `build/` tiene las mismas declaraciones, en otro orden. No hace falta versión nueva.
+
 ## [0.2.0] — 2026-10-17
 
 ### Cambiado

@@ -1,0 +1,106 @@
+{
+  "opacity": {
+    "ghost": {
+      "$type": "number",
+      "$value": 0.03999999910593033,
+      "$description": "4%",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3001:17",
+        "com.figma.scopes": [
+          "OPACITY"
+        ]
+      }
+    },
+    "hairline": {
+      "$type": "number",
+      "$value": 0.07999999821186066,
+      "$description": "8%",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3001:18",
+        "com.figma.scopes": [
+          "OPACITY"
+        ]
+      }
+    },
+    "subtle": {
+      "$type": "number",
+      "$value": 0.1599999964237213,
+      "$description": "16%",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3001:19",
+        "com.figma.scopes": [
+          "OPACITY"
+        ]
+      }
+    },
+    "mid": {
+      "$type": "number",
+      "$value": 0.41999998688697815,
+      "$description": "42%",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3001:20",
+        "com.figma.scopes": [
+          "OPACITY"
+        ]
+      }
+    },
+    "soft": {
+      "$type": "number",
+      "$value": 0.5,
+      "$description": "50%",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3001:21",
+        "com.figma.scopes": [
+          "OPACITY"
+        ]
+      }
+    },
+    "medium": {
+      "$type": "number",
+      "$value": 0.6000000238418579,
+      "$description": "60%",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3001:22",
+        "com.figma.scopes": [
+          "OPACITY"
+        ]
+      }
+    },
+    "strong": {
+      "$type": "number",
+      "$value": 0.7200000286102295,
+      "$description": "72%",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3001:23",
+        "com.figma.scopes": [
+          "OPACITY"
+        ]
+      }
+    },
+    "high": {
+      "$type": "number",
+      "$value": 0.800000011920929,
+      "$description": "80%",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3001:24",
+        "com.figma.scopes": [
+          "OPACITY"
+        ]
+      }
+    },
+    "full": {
+      "$type": "number",
+      "$value": 1,
+      "$description": "100%",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3001:25",
+        "com.figma.scopes": [
+          "OPACITY"
+        ]
+      }
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Mode 1"
+  }
+}

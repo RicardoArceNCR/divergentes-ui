@@ -38,10 +38,6 @@
       "$type": "color",
       "$value": "{color.neutral.900}"
     },
-    "inverse-subtle": {
-      "$type": "string",
-      "$value": "rgba(255, 255, 255, 0.11)"
-    },
     "accent-bg": {
       "$type": "color",
       "$value": "{color.neutral.900}"
@@ -53,6 +49,10 @@
     "accent-border": {
       "$type": "color",
       "$value": "{color.neutral.700}"
+    },
+    "inverse-subtle": {
+      "$type": "string",
+      "$value": "rgba(255, 255, 255, 0.11)"
     },
     "ink": {
       "$type": "color",
@@ -88,6 +88,10 @@
       "$type": "color",
       "$value": "{color.white}"
     },
+    "inverse-secondary": {
+      "$type": "string",
+      "$value": "rgba(255, 255, 255, 0.61)"
+    },
     "brand": {
       "$type": "color",
       "$value": "{color.accent.500}"
@@ -95,10 +99,6 @@
     "on-brand": {
       "$type": "color",
       "$value": "{color.white}"
-    },
-    "inverse-secondary": {
-      "$type": "string",
-      "$value": "rgba(255, 255, 255, 0.61)"
     },
     "brand-accent": {
       "$type": "color",

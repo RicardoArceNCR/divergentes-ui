@@ -1,0 +1,27 @@
+{
+  "figma": {
+    "collections": [
+      "primitivos", "semanticos", "componentes",
+      "spacing", "tipografia", "motion", "opacity", "breakpoints",
+      "semanticos-dark", "componentes-dark",
+      "shadow", "z-index"
+    ],
+    "required": {
+      "semanticos": [["text", "primary"], ["surface", "base"], ["brand", "main"], ["focus", "ring-color"]],
+      "primitivos": [["color", "neutral", "50"], ["color", "main", "500"], ["radius", "md"]],
+      "spacing": [["spacing", "0"], ["spacing", "8"]],
+      "opacity": [["opacity", "ghost"], ["opacity", "high"]],
+      "motion": [["motion", "duration", "fast"]],
+      "breakpoints": [["breakpoint", "md"]],
+      "semanticos-dark": [["background", "page"], ["text", "primary"], ["surface", "inverse"]],
+      "componentes-dark": [["nav", "bg"]],
+      "shadow": [["shadow", "sm"], ["shadow", "md"], ["shadow", "lg"], ["shadow", "sm-dark"], ["shadow", "md-dark"], ["shadow", "lg-dark"]],
+      "z-index": [["z-index", "dropdown"], ["z-index", "modal"]]
+    },
+    "darkCrossCollection": [
+      "button/size/sm/height", "button/size/sm/padding-x",
+      "button/size/md/height", "button/size/md/padding-x",
+      "button/size/lg/height", "button/size/lg/padding-x"
+    ]
+  }
+}
